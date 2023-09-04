@@ -1,0 +1,52 @@
+.mainContainerO {
+  padding: 20px 25px;
+  .activeT {
+    font-size: 36px;
+    font-weight: 700;
+  }
+  .mainTabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:20px;
+    .tabs {
+      button {
+        padding: 10px 12px;
+        border: none;
+        border-radius: 4px;
+        background-color: rgba(203, 217, 173, 1);
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: white;
+        cursor: pointer;
+        width:100px;
+      }
+      width:60%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .searchDiv {
+      display: flex;
+      border: 1px solid rgba(144, 166, 123, 1);
+      padding: 10px 10px;
+      border-radius: 10px;
+      background-color: white;
+      input {
+        background-color: transparent !important;
+        border: none;
+        padding-left:5px;
+
+    }:focus{
+        border: none;
+        outline: none;
+    }
+    }
+  }
+  .mainTable{
+    background-color: white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+  }
+}

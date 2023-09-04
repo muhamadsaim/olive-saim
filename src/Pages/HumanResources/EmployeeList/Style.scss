@@ -1,0 +1,69 @@
+.employeeMain {
+  padding: 10px 0;
+  height: 100%;
+  //   background-color: orange;
+  .insideMainEmp{
+    background-color: white;
+    height: 100%;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.52);
+    .employee {
+      color: #000;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .employeeList {
+      height: 300px;
+      overflow-y: scroll;
+      margin-top: 20px;
+      .employeeInfo {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.34);
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .imgDiv {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          img {
+            height: 40px;
+            width:40px;
+            border-radius: 50%;
+          }
+          .bioDiv {
+            padding-left: 10px;
+            .gp {
+              color: #90a67b;
+              font-size: 12px;
+              font-weight: 500;
+            }
+            p {
+              color:rgba(0,0,0,0.70);
+              font-size: 14px;
+              font-weight: 500;
+            }
+          }
+        }
+        .expDiv {
+            .gp {
+              color: #90a67b;
+              font-size: 12px;
+              font-weight: 500;
+              text-align: right;
+            }
+            p {
+                color:rgba(0,0,0,0.70);
+                font-size: 12px;
+                font-weight: 500;
+                text-align: right;
+            }
+          }
+      }
+    }
+  }
+}
+.employeeList::-webkit-scrollbar {
+    display: none;
+  }

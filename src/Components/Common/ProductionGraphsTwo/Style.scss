@@ -1,0 +1,28 @@
+.mainContainerPT{
+    padding:0 25px;
+    display: flex;
+    justify-content:space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    // background-color: black;
+    // width:95%;
+    // height:30%;
+    // background-color: red;
+    .proGraph{
+        background-color: white;
+        width:31%;
+        box-shadow: 0 4px 20px 0 rgba(238, 238, 238, 0.27);
+        border-radius:10px;
+        padding:0;
+        // height:80%;
+        // margin:0 10px;
+        p{
+            text-align: center;
+            font-size:16px;
+            font-weight: 600;
+            padding:0 2px;
+            margin-bottom:-15px;
+            // background-color: red;
+        }
+    }
+}

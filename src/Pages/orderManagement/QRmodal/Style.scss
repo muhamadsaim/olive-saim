@@ -1,0 +1,46 @@
+.mainQRcode {
+  .qrcodeDiv {
+    background-color: black;
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    
+  }
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:20px;
+  .cancleButton {
+    border: 1px solid rgba(144, 166, 123, 1);
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    font-weight: 400;
+    padding:10px 15px;
+    box-shadow:0px 20px 4px 0px rgba(238, 238, 238, 0.27);
+    cursor: pointer;
+  }
+  .printButton{
+      background-color: rgba(144, 166, 123, 1);
+      font-size: 14px;
+      font-weight: 400;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding:10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+  }
+}
+.qrcodeBlock{
+// border: 1px solid red;
+text-align: center;
+padding:25px 0;
+p{
+    margin-bottom:20px;
+}
+}

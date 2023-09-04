@@ -1,0 +1,10 @@
+.linkStyle:focus{
+    background-color: rgba(144, 166, 123, 1);
+    color: white!important;
+    border-radius:5px;
+}
+.active{
+    background-color: rgba(144, 166, 123, 1);
+    color: white!important;
+    border-radius:5px;
+}

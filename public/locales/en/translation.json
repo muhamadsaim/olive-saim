@@ -1,0 +1,31 @@
+{
+    "sidebar": {
+        "1": "Dashboard & Analytics",
+        "2": "Order Management",
+        "3": "Analytics",
+        "4": "Customer Management",
+        "5": "Warehouse Management",
+        "6": "Oil Storage",
+        "7": "Human Resource",
+        "8": "Finance & Accounting",
+        "9": "Access Control",
+        "10": "Lab Service",
+        "11": "Loyalty Program",
+        "12": "System Maintenance",
+        "13": "Setting"},
+    "Mills": {
+        "1": "Arabella Mills",
+        "newCustomers": "New Customers",
+        "newOrders": "New Orders",
+        "orderInProcess": "Order in Process",
+        "processedOlives": "Processed Olives"
+    },
+    "NavbarText":{
+        "name":"Tariq Beshtawi",
+        "admin":"Admin"
+    },
+    "graph":{
+        "production":" Production Graph Quick View(Tons)"
+      }
+
+}

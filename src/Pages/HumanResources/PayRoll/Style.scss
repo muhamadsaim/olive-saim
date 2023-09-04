@@ -1,0 +1,33 @@
+.payrollMain {
+    padding:25px 0;
+  .payroll {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .p1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: black;
+    }
+    .p2 {
+      border-radius: 10px;
+      border: 1px solid #90a67b;
+      background: #fff;
+      box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.52);
+      color: rgba(0,0,0,0.5);
+      font-size: 14px;
+      font-weight: 600;
+      padding:10px 0;
+      width:10%;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+  .payTable{
+    background-color: #fff;
+    padding:15px 10px;
+    margin-top:25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.52);
+  }
+}

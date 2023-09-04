@@ -1,0 +1,140 @@
+.mainContainer{
+    height: 100vh;
+    background-color:rgb(241, 241, 241);
+    // width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .reset{
+        // background-color: red;
+        height:80%;
+        width:70%;
+        display:flex;
+        // align-items: center;
+        justify-content: center;
+        .form{
+              height:100%;
+              width: 45%;
+              display: flex;
+              flex-direction: column;
+            align-items: center;
+              background-color: white;
+              .logoDiv{
+                  width: 100%;
+                  img{
+                    padding:10px;
+                    height:80px;
+                    width: 80px;
+                    background:transparent;
+                }
+              }
+              .inputFields{
+                width: 70%;
+                // background-color: red;
+                h2{
+                    font-weight: 700;
+                    padding-bottom:10px;
+                }
+                form{
+                    
+                    .inputDiv{
+                        display:flex;
+                        flex-direction: column;
+                        padding:5px 0;
+                        .labelAnderror{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                        }
+                        label{
+                            font-weight: 600;
+                        font-size: 16px;
+                        padding-left:5px;
+                    }
+                    input{
+                        outline: none;
+                        border: none;
+                        border-radius: 8px;
+                        padding:8px 10px;
+                        font-size:10px;
+                        font-weight: 400;
+                        border: 1px solid rgba(144, 166, 123, 1);
+                        box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.27);
+                    }
+                    .passwordDiv{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        background-color:white;
+                        border-radius:8px;
+                        border: 1px solid rgba(144, 166, 123, 1);
+                        box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.27);
+                        input{
+                            background: none;
+                            border: none;
+                        }
+                        img{
+                            height:20px;
+                            width:20px;
+                            padding-right:15px;
+                            cursor:pointer;
+                        }
+                    }
+                    }
+                    
+                    .submit{
+                        width:100%;
+                        background-color:rgba(144, 166, 123, 1);
+                        color: white;
+                        border-radius:8px;
+                        padding:8px;
+                        border: none;
+                        box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.27);
+                        cursor: pointer;
+                        font-size:16px;
+                        font-weight: 700;
+                        margin-top: 10px;
+                    }
+                }
+                p{
+                    font-size: 10px;
+                    font-weight:400px;
+                    text-align: center;
+                    padding-top:5px;
+                    a{
+                        color: rgba(50, 125, 250, 1);
+                        text-decoration: none;
+                    }
+                }
+              }
+        }
+        .imgDiv{
+// background-color: red;
+            height: 100%;
+            width:40%;
+            background-image: url('../../../../../assets/AuthImages/main1.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position:center;
+            background-position-x: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .textDiv{
+                width:70%;
+                height: 37%;
+                h2{
+                    color: white;
+                    font-weight: 700;
+                    text-align: center;
+                }
+                p{
+                    font-size: 12px;
+                    font-weight:400;
+                }
+            }
+        }
+
+    }
+}

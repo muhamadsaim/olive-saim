@@ -1,0 +1,24 @@
+.orderManagement{
+    margin-top:30px;
+    .createOrderDiv{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 25px;
+        .p1{
+            font-size: 30px;
+            font-weight: 700;
+        }
+        .p2{
+            border:1px solid rgba(144, 166, 123, 1);
+            border-radius:10px;
+            padding:10px 10px;
+            font-size:24px;
+            font-weight:700;
+            background-color: white;
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+        }
+    }
+}

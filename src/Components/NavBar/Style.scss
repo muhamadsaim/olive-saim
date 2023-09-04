@@ -1,0 +1,47 @@
+.MainContainer{
+    height: 50px;
+    padding:0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:40px;
+    .comName{
+        display: flex;
+        align-items: center;
+        width:50%;
+        h1{
+            padding-left:15px;
+            font-weight: 700;
+        }
+    }
+    .tabsMain{
+        display: flex;
+        align-items: center;
+        justify-content:flex-end;
+        width: 50%;
+    .avatarDiv{
+        display: flex;
+        align-items: center;
+        margin:0 5px;
+        .adminName{
+            padding-right:5px;
+            p{
+                text-align: right;
+            }
+        }
+    }
+    .tabs{
+        display: flex;
+        .tab{
+            height:56px;
+            width: 56px;
+            border-radius:50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin:0 5px;
+
+        }
+    }
+}
+}

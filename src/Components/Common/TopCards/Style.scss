@@ -1,0 +1,30 @@
+.mainContainerC{
+    // margin-top:25px;
+    margin-bottom:15px;
+    padding:10px 25px;
+    .cardDivs{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        .card{
+            background-color: white;
+            height:220px;
+            width: 22%;
+            padding:0 10px;
+            border-radius:10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px 0 rgba(238, 238, 238, 0.27);
+            margin:5px 0;
+            cursor: pointer;
+        }
+        p{
+            font-weight:900;
+            font-size:24px;
+            color:rgba(144, 166, 123, 1);
+        }
+    }
+}

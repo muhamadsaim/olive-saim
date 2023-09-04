@@ -1,0 +1,36 @@
+.analyticMain{
+    margin-top:30px;
+    padding-bottom: 20px;
+    .dateDiv{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 25px;
+        cursor: pointer;
+        .p1{
+            font-size: 30px;
+            font-weight: 700;
+        }
+        .p2{
+            border:1px solid rgba(144, 166, 123, 1);
+            border-radius:10px;
+            padding:10px 10px;
+            background-color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .date{
+                color: black;
+                font-size:12px;
+                font-weight:600;
+                padding-right:10px;
+            }
+        }
+    }
+    .graphAndReport{
+        display: flex;
+        // justify-content: space-around;
+        padding:0 25px;
+    }
+}

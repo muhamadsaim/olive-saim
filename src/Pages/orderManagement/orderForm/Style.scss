@@ -1,0 +1,286 @@
+.formMain {
+  z-index: 1 !important;
+  width: 50%;
+  background-color: white;
+  padding: 20px 20px;
+  border-radius: 10px;
+  position: absolute;
+  right: 20%;
+  .formDiv1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .insideFormDiv1 {
+      display: flex;
+      align-items: flex-end;
+      .cusInp {
+        display: flex;
+        flex-direction: column;
+        label {
+          font-size: 18px;
+          font-weight: 600;
+        }
+        input {
+          color: rgba(0, 0, 0, 0.34);
+          font-size: 14px;
+          font-weight: 600;
+          padding: 10px 10px;
+          border: 1px solid rgba(144, 166, 123, 1);
+          border-radius: 8px;
+        }
+        :focus {
+          outline: none !important;
+        }
+      }
+      .checkDiv {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        .checkBox {
+          height: 42px;
+          width: 42px;
+          border: 1px solid rgba(144, 166, 123, 1);
+          border-radius: 8px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            // z-index:10!important;
+            background: transparent;
+          }
+        }
+        .p1 {
+          color: rgba(99, 101, 120, 1);
+          font-size: 24px;
+          font-weight: 600;
+          margin-left: 10px;
+        }
+      }
+    }
+    .icon {
+      cursor: pointer;
+    }
+  }
+  .formDiv2 {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-top: 20px;
+    .p2 {
+      color: gba(99, 101, 120, 1);
+      font-size: 24px;
+      font-family: 600;
+      margin-top: 20px;
+    }
+    .mainFormDiv2 {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      .selectDiv {
+        width: 50%;
+        .p3 {
+          color: rgba(0, 0, 0, 0.55);
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+      .picDiv {
+        width: 50%;
+        .p4 {
+          color: rgba(0, 0, 0, 0.55);
+          font-size: 14px;
+          font-weight: 400;
+        }
+        .wandp {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border: 1px solid rgba(144, 166, 123, 1);
+          border-radius: 10px;
+          padding: 10px 10px;
+          width: 80%;
+
+          margin-top: 10px;
+          input {
+            border: none;
+            color: rgba(0, 0, 0, 0.25);
+            font-size: 14px;
+            font-size: 400;
+          }
+          :focus {
+            outline: none;
+          }
+          img {
+            height: 30px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .toggleDiv {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-top: 20px;
+    .nameDiv {
+      .p5 {
+        color: rgba(0, 0, 0, 0.55);
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom:3px;
+      }
+      .inputDiv {
+        display: flex;
+        align-items: center;
+        .nameDiv {
+          width: 50%;
+          input {
+            width: 75%;
+            padding: 15px 10px;
+            border: 1px solid rgba(144, 166, 123, 1);
+            font-size: 14px;
+            font-family: 400;
+            border-radius: 10px;
+          }
+          :focus {
+            outline: none;
+          }
+        }
+        .nameDivv {
+          width: 50%;
+          input {
+            width: 80%;
+            padding: 15px 10px;
+            border: 1px solid rgba(144, 166, 123, 1);
+            font-size: 14px;
+            font-family: 400;
+            border-radius: 10px;
+          }
+          :focus {
+            outline: none;
+          }
+        }
+      }
+    }
+    .cnic {
+      margin-top: 20px;
+      input {
+        width: 90%;
+        padding: 15px 10px;
+        border: 1px solid rgba(144, 166, 123, 1);
+        font-size: 14px;
+        font-family: 400;
+        border-radius: 10px;
+      }
+      :focus {
+        outline: none;
+      }
+    }
+    .picAndphone {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      .picDiv {
+        width: 50%;
+        .p6 {
+          color: rgba(0, 0, 0, 0.55);
+          font-size: 14px;
+          font-weight: 400;
+        }
+        .imgDiv {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border: 1px solid rgba(144, 166, 123, 1);
+          border-radius: 10px;
+          padding: 10px 10px;
+          width: 75%;
+          margin-top: 10px;
+          input {
+            border: none;
+            color: rgba(0, 0, 0, 0.25);
+            font-size: 14px;
+            font-size: 400;
+          }
+          :focus {
+            outline: none;
+          }
+          img {
+            height: 30px;
+            cursor: pointer;
+          }
+        }
+      }
+      .phoneDiv{
+        width: 50%;
+        .p6 {
+            color: rgba(0, 0, 0, 0.55);
+            font-size: 14px;
+            font-weight: 400;
+          }
+          .phoneIn{
+            width: 77%;
+            border: 1px solid rgba(144, 166, 123, 1) !important;
+            padding:15px!important;
+            border-radius: 10px !important;
+            margin-top: 10px;
+          }
+      }
+    }
+    .address {
+        margin-top: 20px;
+        input {
+          width: 90%;
+          padding: 15px 10px;
+          border: 1px solid rgba(144, 166, 123, 1);
+          font-size: 14px;
+          font-family: 400;
+          border-radius: 10px;
+        }
+        :focus {
+          outline: none;
+        }
+      }
+  }
+  .buttons{
+    float: right;
+    button{
+        padding:10px 10px;
+        text-align: center;
+        border: none;
+        border-radius:8px;
+        background-color:rgba(144, 166, 123, 1);
+        font-size:18px;
+        font-weight:700;
+        margin:0 5px;
+        color: white;
+        cursor: pointer;
+    }
+  }
+  .css-1u9des2-indicatorSeparator {
+    // display: none!important;
+    background: none !important;
+  }
+  .css-b62m3t-container {
+    width: 80%!important;
+    // padding:15px 10px;
+    margin-top: 10px;
+  }
+  .css-13cymwt-control {
+    border: 1px solid rgba(144, 166, 123, 1) !important;
+    padding: 6px 10px !important;
+    border-radius: 10px !important;
+  }
+  :focus {
+    outline: none !important;
+  }
+}
+.PhoneInput{
+    padding:none!important
+}
+.PhoneInputInput {
+   border: none!important;
+//   width:10%!important;
+}

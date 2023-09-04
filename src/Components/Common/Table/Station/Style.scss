@@ -1,0 +1,39 @@
+.stationMain{
+    .p1{
+        text-align: center !important;
+        font-size: 12px !important;
+        font-weight: 300 !important;
+        color: rgba(0, 0, 0, 1) !important;
+        border:none!important;
+        cursor: pointer;
+    }
+}   
+.insideMain{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+    .p2{
+        font-size: 36px;
+        font-weight: 700;
+        text-align: center;
+    }
+    .p3{
+        font-size: 18px;
+        font-weight:300;
+        // border:1px solid red;
+        width:60%;
+    }
+}
+.saveBtn{
+    padding:10px 10px;
+    background-color: rgba(203, 217, 173, 1);
+    color: rgba(144, 166, 123, 1);
+    font-size:18px;
+    font-weight:700;
+    width:15%;
+    border-radius:10px;
+    border: none;
+    float: right;
+    cursor: pointer;
+}

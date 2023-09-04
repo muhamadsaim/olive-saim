@@ -1,0 +1,68 @@
+.absentiesMain {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.52);
+  padding: 20px 10px;
+  .p1 {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .allAbsent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    .mainAbsents {
+      width: 30%;
+      .absent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding:5px;
+        .imgDiv {
+          display: flex;
+          img {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+          }
+          .name {
+            padding-left: 10px;
+            p {
+              color: rgba(0, 0, 0, 0.34);
+              font-size: 14px;
+              font-weight: 500;
+            }
+          }
+        }
+        .statusDiv {
+          display: flex;
+          align-items: center;
+          width: 30%;
+          .approved {
+            background-color: #39b54a;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+          }
+          .pending {
+            background-color: #327dfa;
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+          }
+          .sp {
+            color: rgba(0, 0, 0, 0.4);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+            padding-left: 5px;
+          }
+        }
+      }
+    }
+  }
+}

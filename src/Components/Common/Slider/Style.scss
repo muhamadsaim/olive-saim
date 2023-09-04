@@ -1,0 +1,39 @@
+// .react-responsive-carousel .carousel .control-arrow:hover {
+//     background-color: transparent!important;
+//     color: black;
+//     opacity: 1;
+//     transition: none;
+//   }
+
+//   .carousel.carousel-slider .control-arrow:hover {
+//     background:none!important;
+//   }
+//   .carousel .control-arrow:hover {
+//     background: none!important; /* Remove background color */
+//     opacity: 1!important; /* Remove opacity change */
+//   }
+  .carousel.carousel-slider .control-arrow:hover{
+    background: none!important;
+  }
+  .carousel .control-prev.control-arrow:before {
+    border-right: 8px solid #000000!important;
+}
+.carousel .control-next.control-arrow:before {
+    border-left: 8px solid #000000!important;
+}
+
+.sliderDiv{
+height:350px;
+    p{
+        // width:60%;
+        padding:5px 10px;
+        text-align: left;
+        font-size: 18px;
+        font-weight: 300;
+    }
+    img{
+        height: 100px!important;
+        width: 100px!important;
+        margin-top:30px;
+    }
+}

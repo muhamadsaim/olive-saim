@@ -1,0 +1,24 @@
+.static {
+    margin-top: 15px;
+    .p1 {
+      color: rgba(0, 0, 0, 0.88);
+      font-size: 36px;
+      font-weight: 700;
+    }
+    .mainStatic {
+      display: flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      width:100%;
+      .leftSide {
+          width:57%;
+        }
+        .rightSide {
+        // height:370px;
+        width:40%;
+      }
+    }
+  }
+  .Absenties{
+    margin-top:20px;
+  }

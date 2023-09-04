@@ -1,0 +1,95 @@
+.ledgerMain {
+  padding: 25px 20px;
+  .p1 {
+    color: #000;
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .mainDiv {
+    border-radius: 10px;
+    background: #fff;
+    margin: 20px 0;
+    padding: 20px;
+    .div1 {
+      display: flex;
+      align-items: center;
+      .inputDiv1 {
+        width: 20%;
+        .p1 {
+          color: rgba(0, 0, 0, 0.6);
+          font-size: 16px;
+          font-weight: 300;
+          margin-bottom: 3px;
+          margin-left: 3px;
+        }
+        input {
+          border-radius: 10px;
+          border: 1px solid #90a67b;
+          color: rgba(0, 0, 0, 0.2);
+          font-size: 12px;
+          font-weight: 300;
+          padding: 5px;
+          width: 95%;
+        }
+        :focus {
+          outline: none;
+        }
+      }
+      .inputDiv2 {
+        margin-left: 15px;
+        width: 21%;
+
+        .p1 {
+          color: rgba(0, 0, 0, 0.6);
+          font-size: 16px;
+          font-weight: 300;
+          margin-bottom: 3px;
+          margin-left: 3px;
+        }
+        .calendarDiv {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: 10px;
+          border: 1px solid #90a67b;
+          padding: 4px 5px;
+          .date {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 12px;
+            font-weight: 300;
+          }
+          img {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .div2 {
+      .inputDiv1 {
+        margin: 10px 0;
+        .p1 {
+          color: rgba(0, 0, 0, 0.6);
+          font-size: 16px;
+          font-weight: 300;
+          margin-bottom: 3px;
+          margin-left: 3px;
+        }
+        input {
+          border-radius: 10px;
+          border: 1px solid #90a67b;
+          color: rgba(0, 0, 0, 0.2);
+          font-size: 12px;
+          font-weight: 300;
+          padding: 5px;
+          width: 19%;
+        }
+        :focus {
+          outline: none;
+        }
+      }
+    }
+    .tableDiv {
+      margin: 20px 0;
+    }
+  }
+}

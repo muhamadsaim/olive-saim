@@ -1,0 +1,81 @@
+.calendarMain {
+  box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.27);
+  border-radius: 8px;
+  padding:20px 20px;
+  margin-top: 40px;
+  width:88%;
+  // max-height: 842px;
+  .calendarDiv {
+    .dateDiv {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(144, 166, 123, 1);
+      border-radius: 8px;
+      padding: 10px 10px;
+      margin-left: 20px;
+      position: absolute;
+      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0);
+      .currentDate {
+        font-size: 12px;
+        font-weight:400;
+        margin-top: 5px;
+        margin-left: 5px;
+        color: rgba(102, 102, 102, 1);
+      }
+    }
+  }
+}
+.calendarMain1 {
+  box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.27);
+  border-radius: 8px;
+  padding:20px 20px;
+  margin-top: 40px;
+  width:50%;
+  position: absolute;
+right:10%;
+top:22%;
+  z-index:10;
+  .calendarDiv {
+    .dateDiv {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(144, 166, 123, 1);
+      border-radius: 8px;
+      padding: 10px 10px;
+      margin-left: 20px;
+      position: absolute;
+      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0);
+      .currentDate {
+        font-size: 12px;
+        font-weight:400;
+        margin-top: 5px;
+        margin-left: 5px;
+        color: rgba(102, 102, 102, 1);
+      }
+    }
+    .close{
+      float: right;
+      margin-right:10px;
+      cursor: pointer;
+    }
+  }
+}
+.react-calendar__tile {
+    border: 1px solid #e2e2e2 !important;
+    padding-top: 10px !important;
+    padding-left: 5px !important;
+    padding-bottom: 30px !important;
+    text-align: left !important;
+  }
+  .react-calendar__navigation__label {
+    max-width: 100px;
+  }
+  .react-calendar__navigation {
+    display: flex;
+    justify-content: center;
+  }
+  .calendarDashboard {
+    border: none !important;
+    width: 100% !important;
+    // background-color: #30334e !important;
+  }

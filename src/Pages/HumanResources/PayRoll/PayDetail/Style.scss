@@ -1,0 +1,174 @@
+.payDetailMain {
+  .payDetail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .p1 {
+      color: rgba(0, 0, 0, 0.88);
+      font-size: 36px;
+      font-weight: 700;
+    }
+    .downloadDiv {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border: 1px solid rgba(144, 166, 123, 1);
+      border-radius: 10px;
+      width: 13%;
+      padding: 10px 0;
+      cursor: pointer;
+      p {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+  .paySlip {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 20px;
+    .paySlip1 {
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.52);
+      width: 65%;
+      padding: 10px;
+      .paySlip1Detail {
+        border-radius: 10px;
+        background: #dadada;
+        box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        p {
+          color: #000;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .pay {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(144, 166, 123, 1);
+        p {
+          color: rgba(0, 0, 0, 0.6);
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .PayCommon {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(144, 166, 123, 1);
+        .p1 {
+          color: #000;
+          font-size: 16px;
+          font-weight: 500;
+        }
+        .p2 {
+          color: rgba(0, 0, 0, 0.6);
+          font-size: 16px;
+          font-weight: 500;
+        }
+        a{
+          text-decoration: none;
+          border-radius: 8px;
+          background: #6f757e;
+          color: #fff;
+          text-align: center;
+          font-size: 18px;
+          font-weight: 700;
+          width: 18%;
+          padding: 5px 0;
+          cursor: pointer;
+        }
+      }
+      .netIncome {
+        border-radius: 10px;
+        background: #dadada;
+        box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        margin-top: 10px;
+        p {
+          color: #000;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .taxIncome {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.34);
+        p {
+          color: #000;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .detailPara {
+        color: rgba(0, 0, 0, 0.34);
+        font-size: 16px;
+        font-weight: 500;
+        padding:10px;
+      }
+    }
+    .paySlip2 {
+      background-color: white;
+      width: 30%;
+      padding: 10px 0;
+      box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.52);
+      border-radius: 10px;
+      .payDetail2 {
+        padding: 5px 10px;
+        border-bottom: 1px solid rgba(144, 166, 123, 1);
+        .p1 {
+          color: #000;
+          font-size: 16px;
+          font-weight: 500;
+        }
+        .div1 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          p {
+            color: rgba(0, 0, 0, 0.34);
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+      }
+      .payDetailLast {
+        padding: 5px 10px;
+        .p1 {
+          color: #000;
+          font-size: 16px;
+          font-weight: 500;
+        }
+        .div1 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          p {
+            color: rgba(0, 0, 0, 0.34);
+            font-size: 16px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
