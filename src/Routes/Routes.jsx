@@ -50,6 +50,8 @@ const FinanceOverview = lazy(() => import("../Pages/Finance/Overview/index"));
 const AccountForm = lazy(() =>
   import("../Pages/Finance/Account/AccountForm/index")
 );
+const AccessControl = lazy(() => import("../Pages/AccessControl/index"));
+const AddUser = lazy(() => import("../Pages/AccessControl/AddUser/index"));
 
 const AllRoutes = () => {
   return (
@@ -95,6 +97,9 @@ const AllRoutes = () => {
             <Route path="new-entry" element={<AccountForm />} />
           </Route>
           <Route path="ledger" element={<Ledger />} />
+        </Route>
+        <Route path="/access-control" element={<AccessControl />}>
+          <Route path="new-user" element={<AddUser />} />
         </Route>
       </Route>
       {/* <Route path='/signup' element={<SignUp />} />
