@@ -1,0 +1,16 @@
+.searchDiv {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid #90a67b;
+    background: #fff;
+    padding:5px;
+    input {
+      border: none;
+      background-color: none;
+    }
+    :focus {
+      outline: none;
+    }
+  }

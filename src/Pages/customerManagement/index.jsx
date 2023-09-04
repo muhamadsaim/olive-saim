@@ -9,6 +9,7 @@ import ProductionGraph from '../../Components/Common/ProductionGraphsTwo';
 import Search from '../../assets/icons/search.png'
 import CustomerTable from './Table/index';
 import CustomerForm from './CustomerForm/index';
+import CustomSearchInput from '../../Components/Common/customSearch';
 
 const CustomerManagement = () => {
   const { t } = useTranslation();
@@ -37,14 +38,15 @@ const CustomerManagement = () => {
         <ProductionGraph />
         <div className='customerTable'>
           <p className='p1'>Customers</p>
-          <div className="searchDiv">
+          {/* <div className="searchDiv">
           <img src={Search} alt="search" height={20} />
           <input
             type="text"
             placeholder="search"
             onChange={(e) => setSearchBar(e.target.value)}
           />
-          </div>
+          </div> */}
+          <CustomSearchInput placeholder="search customer" onSearchChange={setSearchBar} iconShow={true}/>
         </div>
         <CustomerTable searchBar={searchBar} />
       </div>

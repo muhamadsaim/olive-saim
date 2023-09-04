@@ -6,6 +6,7 @@ import WarehouseOilTable from "../../Components/Common/WarehouseOilTable";
 import { Link } from "react-router-dom";
 import CanBottle from "./CanAndBottle";
 import SpareParts from "./SpareParts";
+import CustomSearchInput from "../../Components/Common/customSearch";
 
 const WareHouse = () => {
   const [searchBar, setSearchBar] = useState();
@@ -38,14 +39,15 @@ const WareHouse = () => {
           <div className="stockBtn">
             <button>Adjusment</button>
             <button>+ Add New</button>
-            <div className="searchDiv">
+            {/* <div className="searchDiv">
               <img src={Search} alt="search" height={20} />
               <input
                 type="text"
                 placeholder="search"
                 onChange={(e) => setSearchBar(e.target.value)}
               />
-            </div>
+            </div> */}
+            <CustomSearchInput placeholder="search" onSearchChange={setSearchBar} iconShow={true}/>
           </div>
         </div>
         <div className="tableDiv">

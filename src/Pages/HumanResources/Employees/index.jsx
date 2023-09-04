@@ -7,6 +7,7 @@ import AddEmployee from "./AddEmployee";
 import LeaveForm from "./Leave";
 import { FaLessThanEqual } from "react-icons/fa";
 import Profile from "./Profile";
+import CustomSearchInput from "../../../Components/Common/customSearch";
 
 const Employees = () => {
   const [searchBar, setSearchBar] = useState();
@@ -32,14 +33,15 @@ const Employees = () => {
               }}>
                 + Add New
               </Link>
-              <div className="searchDiv">
+              {/* <div className="searchDiv">
                 <img src={Search} alt="search" height={20} />
                 <input
                   type="text"
                   placeholder="search"
                   onChange={(e) => setSearchBar(e.target.value)}
                 />
-              </div>
+              </div> */}
+            <CustomSearchInput placeholder="search" onSearchChange={setSearchBar} iconShow={true}/>
             </div>
           </div>
           {addEmp && <AddEmployee setShowForm={setAddEmp} />}
