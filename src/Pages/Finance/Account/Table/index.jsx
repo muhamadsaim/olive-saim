@@ -111,9 +111,9 @@ const TableCom = ({ searchVal, activeBtn }) => {
               <TableCell align="right" className="bor">
                 {row.amount}
               </TableCell>
-              <TableCell  className="lastCell">
-                {row.action}
+              <TableCell  align="right" className="lastCell">
                 <img src={Arrow} alt="arrow" height={6} />
+                {row.action}
               </TableCell>
             </TableRow>
           ))}
