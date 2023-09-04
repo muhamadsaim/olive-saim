@@ -1,6 +1,10 @@
+.ledgerTable{
+
+
+
 // Styling for header cells
 .MuiTableCell-head {
-    background-color: rgba(144, 166, 123, 1) !important;
+    // background-color: rgba(144, 166, 123, 1) !important;
     text-align: center !important;
     font-size: 20px !important;
     font-weight: 400 !important;
@@ -30,12 +34,29 @@
   .firstCell{
     border-top-left-radius:10px;
     border-bottom-left-radius:10px;
+    border-right:1px solid rgba(0, 0, 0, 0.2)!important;
+
   }
   .lastCell{
     border-top-right-radius:10px;
     border-bottom-right-radius:10px;
+    border-left:1px solid rgba(0, 0, 0, 0.2)!important;
+
+  }
+  .bor{
+    border-left:1px solid rgba(0, 0, 0, 0.2)!important;
   }
   .mainHeading{
-    background-color: none!important;
+    .transaction{
+      background-color:rgba(203, 217, 173, 1) !important;
+    }
+    .balance{
+      
+      background-color:rgba(203, 217, 173, 1) !important;
+    }
   }
-  
+  .secondHead{
+    
+    background-color: rgba(144, 166, 123, 1) !important;
+  }
+}

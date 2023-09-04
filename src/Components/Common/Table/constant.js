@@ -477,3 +477,42 @@ export const ledgerTableData = [
   },
   
 ]
+
+export const accessControlTable = [
+  {
+    name: 'Huraira',
+    role: 'CEO',
+    access: 'Full Access',
+    status:'Acive'
+  },
+  {
+    name: 'Huraira',
+    role: 'Manager',
+    access: 'Standard Access',
+    status:'Acive'
+  },
+  {
+    name: 'Hamza',
+    role: 'CEO',
+    access: 'Full Access',
+    status:'Not Logged in'
+  },
+  {
+    name: 'Huraira',
+    role: 'CEO',
+    access: 'Hr Access',
+    status:'Not Logged in'
+  },
+  {
+    name: 'Usman',
+    role: 'Auditor',
+    access: 'Lab Access',
+    status:'Acive'
+  },
+  {
+    name: 'ALi',
+    role: 'Admin',
+    access: 'Full Access',
+    status:'Acive'
+  },
+]

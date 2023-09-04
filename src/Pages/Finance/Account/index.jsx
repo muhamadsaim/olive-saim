@@ -9,6 +9,7 @@ import { useState } from 'react'
 import Select from 'react-select'
 import TableCom from './Table'
 import AccountForm from './AccountForm'
+import CustomSearchInput from '../../../Components/Common/customSearch'
 
 const options = [
   {label:'action1',value:'action1'},
@@ -44,7 +45,8 @@ const Account = () => {
               show&&<button disabled={active}>InActive</button>
             }
             </div>
-            <input type="text" placeholder='search by name' value={name} onChange={(e) => setName(e.target.value)} />
+            <CustomSearchInput placeholder="search by name" onSearchChange={setName} iconShow={false} />
+            {/* <input type="text" placeholder='search by name' value={name} onChange={(e) => setName(e.target.value)} /> */}
             <Select
               value={selcetedOption}
               onChange={setSelectedOption}
