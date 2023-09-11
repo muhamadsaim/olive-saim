@@ -52,6 +52,12 @@ const AccountForm = lazy(() =>
 );
 const AccessControl = lazy(() => import("../Pages/AccessControl/index"));
 const AddUser = lazy(() => import("../Pages/AccessControl/AddUser/index"));
+const LabService = lazy(() => import('../Pages/LabService/index'));
+const AddOrder = lazy(() => import("../Pages/LabService/AddOrder"));
+const SystemMaintenance = lazy(() => import('../Pages/SystemMaintenance/index'));
+const NewService = lazy(() => import('../Pages/SystemMaintenance/AddService/index'));
+const Communication=lazy(()=>import('../Pages/communication/index'))
+
 
 const AllRoutes = () => {
   return (
@@ -101,6 +107,13 @@ const AllRoutes = () => {
         <Route path="/access-control" element={<AccessControl />}>
           <Route path="new-user" element={<AddUser />} />
         </Route>
+        <Route path="/lab-service" element={<LabService />}>
+          <Route path="new-order" element={<AddOrder/>}/>
+        </Route>
+        <Route path="/system-maintenance" element={<SystemMaintenance />}>
+          <Route path="new-service" element={<NewService/>}/>
+        </Route>
+        <Route path="communication" element={<Communication/>}/>
       </Route>
       {/* <Route path='/signup' element={<SignUp />} />
     <Route path='/login' element={<Login />} />
