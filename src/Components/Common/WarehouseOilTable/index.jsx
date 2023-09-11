@@ -8,31 +8,28 @@ import TableRow from "@mui/material/TableRow";
 import "./Style.scss";
 import Watch from "../../../assets/icons/TableEye.png";
 import Theme from "../../../Theme/Theme";
-import { WarehouseOilTableData } from "../Table/constant";
 import Tooltip from "@mui/material/Tooltip";
 
-const WarehouseOilTable = ({ searchVal }) => {
+const WarehouseOilTable = ({ searchVal,data }) => {
   const lightTheme = Theme();
-  const [rows, setRows] = useState(WarehouseOilTableData);
-  const [filterData, setFilterData] = useState(WarehouseOilTableData);
+  const [rows, setRows] = useState(data);
+  const [filterData, setFilterData] = useState(data);
 
   useEffect(() => {
     searchFilter();
   }, [searchVal]);
+
+  const tableHeaders = Object.keys(data[0] || {});
+
 
   const searchFilter = () => {
     if (!searchVal) {
       setFilterData(rows);
     } else {
       const filter = rows.filter((order) => {
-        return (
-          order.transactionId.toLowerCase().includes(searchVal) ||
-          order.inOut.toLowerCase().includes(searchVal) ||
-          order.amount.toLowerCase().includes(searchVal) ||
-          order.authorized.toLowerCase().includes(searchVal) ||
-          order.linkedOrder.toLowerCase().includes(searchVal) ||
-          order.paymentMethod.toLowerCase().includes(searchVal) 
-        );
+        return tableHeaders.some((header) => 
+          order[header].toLowerCase().includes(searchVal)
+        )
       });
       setFilterData(filter);
     }
@@ -42,19 +39,21 @@ const WarehouseOilTable = ({ searchVal }) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell
-              style={{
-                borderTopLeftRadius: "10px",
-                borderBottomLeftRadius: "10px",
-              }}
-            >
-              Tansaction ID
-            </TableCell>
-            <TableCell align="right">In/Out</TableCell>
-            <TableCell align="right">Amount</TableCell>
-            <TableCell align="right">Authorized By</TableCell>
-            <TableCell align="right">linked Order</TableCell>
-            <TableCell align="right">Payment Method</TableCell>
+          {tableHeaders.map((header, index) => (
+              <TableCell
+                key={index}
+                style={{
+                  borderTopLeftRadius: index === 0 ? "10px" : "0px",
+                  borderBottomLeftRadius: index === 0 ? "10px" : "0px",
+                  borderTopRightRadius:
+                    index === tableHeaders.length ? "10px" : "0px",
+                  borderBottomRightRadius:
+                    index === tableHeaders.length ? "10px" : "0px",
+                }}
+              >
+                {header}
+              </TableCell>
+            ))}
             <TableCell
               align="right"
               style={{
@@ -75,21 +74,18 @@ const WarehouseOilTable = ({ searchVal }) => {
               }}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell
-                component="th"
-                scope="row"
-                style={{
-                  borderTopLeftRadius: "10px",
-                  borderBottomLeftRadius: "10px",
-                }}
-              >
-                {row.transactionId}
-              </TableCell>
-              <TableCell align="right">{row.inOut}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
-              <TableCell align="right">{row.authorized}</TableCell>
-              <TableCell align="right">{row.linkedOrder}</TableCell>
-              <TableCell align="right">{row.paymentMethod}</TableCell>
+             {Object.values(row).map((cellValue, cellIndex) => (
+                <TableCell
+                  key={cellIndex}
+                  align="right"
+                  style={{
+                    borderTopLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                    borderBottomLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                  }}
+                >
+                  {cellValue}
+                </TableCell>
+              ))}
               <TableCell
                 align="right"
                 style={{

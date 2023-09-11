@@ -9,6 +9,8 @@ const roleOptions = [
   { label: "Admin", value: "Admin" },
   { label: "Auditor", value: "Auditor" },
   { label: "Employee", value: "Employee" },
+  { label: "Dispatcher", value: "Dispatcher" },
+  { label: "Basic User", value: "Basic User" },
 ];
 const AddUser = ({ setShow }) => {
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ const AddUser = ({ setShow }) => {
   };
   return (
     <div className="newUserMain">
+      
       <div className="iconDiv">
         <IoMdClose
           size={20}

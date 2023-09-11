@@ -1,12 +1,13 @@
 // Styling for header cells
-.MuiTableCell-head {
+.accessTable {
+  .MuiTableCell-head {
     background-color: rgba(144, 166, 123, 1) !important;
     text-align: center !important;
     font-size: 20px !important;
     font-weight: 400 !important;
     border: none !important;
   }
-  
+
   .MuiTableBody-root tr.MuiTableRow-root:nth-of-type(even) {
     background-color: rgba(
       203,
@@ -16,51 +17,49 @@
     ) !important; // You can adjust this color
     border-radius: 10px !important;
   }
-  
+
   // Styling for body cells
   .MuiTableCell-body {
     text-align: center !important;
     font-size: 12px !important;
     font-weight: 300 !important;
     color: rgba(0, 0, 0, 0.55) !important;
-    border: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
     cursor: pointer;
   }
-  
-  .borHead1{
-      border-top-right-radius: 10px;
-    border-bottom-right-radius:10px;
-    border-left:1px solid rgba(0, 0, 0, 0.34)!important;
-  }
-  .borHead{
-      border-top-left-radius:10px;
-      border-bottom-left-radius:10px;
-  }
-  .bor{
-      border-left:1px solid rgba(0, 0, 0, 0.34)!important;
-  }
-  .lastCell {
+
+  .borHead1 {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    border-left:1px solid rgba(0, 0, 0, 0.34)!important;
+    border-left: 1px solid rgba(0, 0, 0, 0.34) !important;
+  }
+  .borHead {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .bor {
+    border-left: 1px solid rgba(0, 0, 0, 0.34) !important;
+  }
+  .lastCell {
+    border-left: 1px solid rgba(0, 0, 0, 0.34) !important;
     display: flex;
     align-items: center;
-    justify-content:center;
-    color: #327dfa!important;
+    justify-content: center;
   }
   .mainActions {
     display: flex;
     justify-content: center;
     align-items: center;
     .circle {
-    //   padding: 5px;
-      margin:0 3px;
-    //   height: 20px;
-    //   width: 20px;
-    //   border-radius: 50%;
+      // padding: 5px;
+      margin: 0 3px;
+      //   height: 20px;
+      //   width: 20px;
+      //   border-radius: 50%;
       img {
-        margin-top: 2px;
+        // margin-top: 2px;
       }
     }
   }
-  
+}

@@ -15,10 +15,10 @@ import QrModal from "../../../Pages/orderManagement/QRmodal/QrModal";
 import Stations from "./Station";
 import Tooltip from "@mui/material/Tooltip";
 
-const TableCom = ({ tabVal, searchVal, qrcode }) => {
+const TableCom = ({ tabVal, searchVal, qrcode, data }) => {
   const lightTheme = Theme();
-  const [rows, setRows] = useState(tableData);
-  const [filterData, setFilterData] = useState(tableData);
+  const [rows, setRows] = useState(data);
+  const [filterData, setFilterData] = useState(data);
 
   useEffect(() => {
     filterTable();
@@ -37,45 +37,42 @@ const TableCom = ({ tabVal, searchVal, qrcode }) => {
     searchFilter();
   }, [searchVal]);
 
+  const tableHeaders = Object.keys(data[0] || {});
+
   const searchFilter = () => {
     if (!searchVal) {
       setFilterData(rows);
     } else {
       const filter = rows.filter((order) => {
-        return (
-          order.farmer.toLowerCase().includes(searchVal) ||
-          order.orderId.toLowerCase().includes(searchVal) ||
-          order.phone.toLowerCase().includes(searchVal) ||
-          order.weight.toLowerCase().includes(searchVal) ||
-          order.city.toLowerCase().includes(searchVal) ||
-          order.town.toLowerCase().includes(searchVal) ||
-          order.line.toLowerCase().includes(searchVal) ||
-          order.status.toLowerCase().includes(searchVal)
+        return tableHeaders.some((header) =>
+          order[header].toLowerCase().includes(searchVal)
         );
       });
       setFilterData(filter);
     }
   };
+
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
+         
           <TableRow>
-            <TableCell
-              style={{
-                borderTopLeftRadius: "10px",
-                borderBottomLeftRadius: "10px",
-              }}
-            >
-              Order ID
-            </TableCell>
-            <TableCell align="right">Farmer</TableCell>
-            <TableCell align="right">Phone</TableCell>
-            <TableCell align="right">Weight</TableCell>
-            <TableCell align="right">City</TableCell>
-            <TableCell align="right">Town</TableCell>
-            <TableCell align="right">Line</TableCell>
-            <TableCell align="right">Status</TableCell>
+            {tableHeaders.map((header, index) => (
+              <TableCell
+                key={index}
+                style={{
+                  borderTopLeftRadius: index === 0 ? "10px" : "0px",
+                  borderBottomLeftRadius: index === 0 ? "10px" : "0px",
+                  borderTopRightRadius:
+                    index === tableHeaders.length ? "10px" : "0px",
+                  borderBottomRightRadius:
+                    index === tableHeaders.length ? "10px" : "0px",
+                }}
+              >
+                {header}
+              </TableCell>
+            ))}
             <TableCell
               align="right"
               style={{
@@ -92,30 +89,26 @@ const TableCom = ({ tabVal, searchVal, qrcode }) => {
             <TableRow
               key={row.index}
               style={{
-                // background: index % 2 === 0 ? 'lightcoral' : 'red', // Alternate row background color
-                borderRadius: "10px", // Border radius for odd rows
+                borderRadius: "10px",
               }}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell
-                component="th"
-                scope="row"
-                style={{
-                  borderTopLeftRadius: "10px",
-                  borderBottomLeftRadius: "10px",
-                }}
-              >
-                {row.orderId}
-              </TableCell>
-              <TableCell align="right">{row.farmer}</TableCell>
-              <TableCell align="right">{row.phone}</TableCell>
-              <TableCell align="right">{row.weight}</TableCell>
-              <TableCell align="right">{row.city}</TableCell>
-              <TableCell align="right">{row.town}</TableCell>
-              <TableCell align="right">{row.line}</TableCell>
-              <TableCell align="right">
-                <Stations status={row.status} />
-              </TableCell>
+              {Object.entries(row).map(([key, cellValue], cellIndex) => (
+                <TableCell
+                  key={cellIndex}
+                  align="right"
+                  style={{
+                    borderTopLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                    borderBottomLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                  }}
+                >
+                  {key === "status" ? (
+                    <Stations status={cellValue} />
+                  ) : (
+                    cellValue
+                  )}
+                </TableCell>
+              ))}
               <TableCell
                 align="right"
                 style={{

@@ -7,20 +7,19 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import "./Style.scss";
 import Theme from "../../../../Theme/Theme";
-import { ledgerTableData } from "../../../../Components/Common/Table/constant";
 
-const LedgerTable = () => {
+const LedgerTable = ({ data }) => {
   const lightTheme = Theme();
-  const [filterData, setFilterData] = useState(ledgerTableData);
+  const [filterData, setFilterData] = useState(data);
+  const tableHeaders = Object.keys(data[0] || {});
 
   return (
     <div className="ledgerTable">
       <TableContainer>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
-            {/* Add a new row for headings */}
             <TableRow className="mainHeading">
-              <TableCell  />
+              <TableCell />
               <TableCell />
               <TableCell align="right" colSpan={2} className="transaction">
                 <strong>Transactions</strong>
@@ -30,14 +29,21 @@ const LedgerTable = () => {
               </TableCell>
             </TableRow>
             <TableRow className="secondHead">
-              <TableCell className="firstCell">Date</TableCell>
-              <TableCell align="right" className="bor">Description</TableCell>
-              <TableCell align="right" className="bor">Debit</TableCell>
-              <TableCell align="right" className="bor">Credit</TableCell>
-              <TableCell align="right" className="bor">TotalDebit</TableCell>
-              <TableCell align="right" className="lastCell">
-                TotalCredit
-              </TableCell>
+              {tableHeaders.map((header, index) => (
+                <TableCell
+                  key={index}
+                  style={{
+                    borderTopLeftRadius: index === 0 ? "10px" : "0px",
+                    borderBottomLeftRadius: index === 0 ? "10px" : "0px",
+                    borderTopRightRadius:
+                      index === tableHeaders.length - 1 ? "10px" : "0px",
+                    borderBottomRightRadius:
+                      index === tableHeaders.length - 1 ? "10px" : "0px",
+                  }}
+                >
+                  {header}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -50,16 +56,23 @@ const LedgerTable = () => {
                 }}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row" className="firstCell">
-                  {row.date}
-                </TableCell>
-                <TableCell align="right" className="bor">{row.description}</TableCell>
-                <TableCell align="right" className="bor">{row.debit}</TableCell>
-                <TableCell align="right" className="bor">{row.credit}</TableCell>
-                <TableCell align="right" className="bor">{row.totalCredit}</TableCell>
-                <TableCell align="right" className="lastCell">
-                  {row.totalDebit}
-                </TableCell>
+                {Object.values(row).map((cellValue, cellIndex) => (
+                  <TableCell
+                    key={cellIndex}
+                    align="right"
+                    className={cellIndex===0? "firstCell":'bor'}
+                    style={{
+                      borderTopLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                      borderBottomLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                      borderTopRightRadius:
+                        cellIndex === tableHeaders.length - 1 ? "10px" : "0px",
+                      borderBottomRightRadius:
+                        cellIndex === tableHeaders.length - 1 ? "10px" : "0px",
+                    }}
+                  >
+                    {cellValue}
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
           </TableBody>

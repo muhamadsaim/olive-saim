@@ -516,3 +516,93 @@ export const accessControlTable = [
     status:'Acive'
   },
 ]
+
+export const labServiceTable = [
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-01',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '392',
+    Customer:'Huraira'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-02',
+    TestStatus: 'Negative',
+    Private: 'False',
+    Bill: '192',
+    Customer:'Hamza'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-03',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '222',
+    Customer:'Ali'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-04',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '192',
+    Customer:'Usman'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-05',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '112',
+    Customer:'Huraira'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-06',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '172',
+    Customer:'Huraira'
+  },
+]
+
+export const maintenanceTable = [
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Malaxar Service",
+    AssignedPerson: 'Huraira',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Malaxar Service",
+    AssignedPerson: 'Hamza',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Waiter Service",
+    AssignedPerson: 'Ali',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Malaxar Service",
+    AssignedPerson: 'Huraira',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Food Service",
+    AssignedPerson: 'Huraira',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Malaxar Service",
+    AssignedPerson: 'Huraira',
+    Status:"Production I/C"
+  },
+]

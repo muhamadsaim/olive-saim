@@ -3,11 +3,12 @@ import "./Style.scss";
 import Search from "../../../assets/icons/search.png";
 import TableCom from "../Table/Table";
 import CustomSearchInput from "../customSearch";
+import { tableData } from "../Table/constant";
 
-const Order = ({qrcode}) => {
+const Order = ({ qrcode }) => {
   const [filterVal, setFilterval] = useState("All");
   const [searchBar, setSearchBar] = useState();
-  const [qrcodeVal,setQrcode]=useState(qrcode)
+  const [qrcodeVal, setQrcode] = useState(qrcode);
   return (
     <div className="mainContainerO">
       <p className="activeT">Active Orders</p>
@@ -19,11 +20,20 @@ const Order = ({qrcode}) => {
           <button onClick={() => setFilterval("Canceled")}>Canceled</button>
           <button onClick={() => setFilterval("Completed")}>Completed</button>
         </div>
-        
-          <CustomSearchInput placeholder="Search" onSearchChange={setSearchBar} iconShow={true}/>
+
+        <CustomSearchInput
+          placeholder="Search"
+          onSearchChange={setSearchBar}
+          iconShow={true}
+        />
       </div>
       <div className="mainTable">
-        <TableCom tabVal={filterVal} searchVal={searchBar} qrcode={qrcodeVal} />
+        <TableCom
+          tabVal={filterVal}
+          searchVal={searchBar}
+          qrcode={qrcodeVal}
+          data={tableData}
+        />
       </div>
     </div>
   );

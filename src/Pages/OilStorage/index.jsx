@@ -5,6 +5,7 @@ import ProductionGraph from "../../Components/Common/ProductionGraphsTwo";
 import Search from "../../assets/icons/search.png";
 import WarehouseOilTable from "../../Components/Common/WarehouseOilTable";
 import CustomSearchInput from "../../Components/Common/customSearch";
+import { WarehouseOilTableData } from "../../Components/Common/Table/constant";
 
 const OilStorage = () => {
   const [searchBar, setSearchBar] = useState();
@@ -28,21 +29,14 @@ const OilStorage = () => {
           <p className="p1">In Stock</p>
           <div className="stockBtn">
             <button>Edit</button>
-            {/* <div className="searchDiv">
-              <img src={Search} alt="search" height={20} />
-              <input
-                type="text"
-                placeholder="search"
-                onChange={(e) => setSearchBar(e.target.value)}
-              />
-            </div> */}
+            
             <CustomSearchInput placeholder="search" onSearchChange={setSearchBar} iconShow={true}/>
 
           </div>
         </div>
         <div className="tableDiv">
           <div className="mainTable">
-            <WarehouseOilTable searchVal={searchBar}/>
+            <WarehouseOilTable searchVal={searchBar} data={WarehouseOilTableData}/>
           </div>
         </div>
       </div>

@@ -3,6 +3,8 @@ import './Style.scss'
 import Calendar from '../../../assets/icons/calendar.png'
 import CalendarCom from '../../../Components/Common/Calendar/Calendar'
 import LedgerTable from './Table'
+import { ledgerTableData } from "../../../Components/Common/Table/constant";
+
 
 
 const Ledger = () => {
@@ -36,7 +38,7 @@ const Ledger = () => {
         </div>
         <div className='tableDiv'>
           
-        <LedgerTable/>
+          <LedgerTable data={ledgerTableData} />
         </div>
       </div>
     </div>

@@ -9,15 +9,14 @@ import "./Style.scss";
 import Theme from "../../../Theme/Theme";
 import Close from '../../../assets/icons/circleClose.png'
 import Reload from '../../../assets/icons/circleReload.png'
-import { accessControlTable } from "../../../Components/Common/Table/constant";
 import { Tooltip } from "@mui/material";
 
 
 
-const TableCom = ({ searchVal, activeBtn }) => {
+const TableCom = ({ searchVal, activeBtn,data }) => {
   const lightTheme = Theme(); // Assuming you have a Theme function defined
-  const [rows, setRows] = useState(accessControlTable);
-  const [filterData, setFilterData] = useState(accessControlTable);
+  const [rows, setRows] = useState(data);
+  const [filterData, setFilterData] = useState(data);
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
 
@@ -25,21 +24,22 @@ const TableCom = ({ searchVal, activeBtn }) => {
     searchFilter();
   }, [searchVal]);
 
+  const tableHeaders = Object.keys(data[0] || {});
+
   const searchFilter = () => {
     if (!searchVal) {
       setFilterData(rows);
     } else {
       const filter = rows.filter((order) => {
-        return (
-          order.name.toLowerCase().includes(searchVal) ||
-          order.role.toLowerCase().includes(searchVal) ||
-          order.access.toLowerCase().includes(searchVal) ||
-          order.status.toLowerCase().includes(searchVal)
+        return tableHeaders.some((header) =>
+          order[header].toLowerCase().includes(searchVal)
         );
       });
       setFilterData(filter);
     }
   };
+
+
 
   const toggleRow = (row) => {
     const updatedSelectedRows = selectedRows.includes(row)
@@ -61,7 +61,7 @@ const TableCom = ({ searchVal, activeBtn }) => {
   };
 
   return (
-    <TableContainer>
+    <TableContainer className="accessTable">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -72,19 +72,26 @@ const TableCom = ({ searchVal, activeBtn }) => {
                 onChange={toggleSelectAll}
               />
             </TableCell>
-            <TableCell align="right" className="bor">
-              Name
-            </TableCell>
-            <TableCell align="right" className="bor">
-              User Role
-            </TableCell>
-            <TableCell align="right" className="bor">
-              Access Control
-            </TableCell>
-            <TableCell align="right" className="bor">
-              Status
-            </TableCell>
-            <TableCell align="right" className="borHead1">
+            {tableHeaders.map((header, index) => (
+              <TableCell
+                key={index}
+                style={{
+                  borderTopRightRadius:
+                    index === tableHeaders.length ? "10px" : "0px",
+                  borderBottomRightRadius:
+                    index === tableHeaders.length ? "10px" : "0px",
+                }}
+              >
+                {header}
+              </TableCell>
+            ))}
+            <TableCell
+              align="right"
+              style={{
+                borderTopRightRadius: "10px",
+                borderBottomRightRadius: "10px",
+              }}
+            >
               Actions
             </TableCell>
           </TableRow>
@@ -113,19 +120,21 @@ const TableCom = ({ searchVal, activeBtn }) => {
                   onChange={() => toggleRow(row)}
                 />
               </TableCell>
-              <TableCell align="right" className="bor">
-                {row.name}
-              </TableCell>
-              <TableCell align="right" className="bor">
-                {row.role}
-              </TableCell>
-              <TableCell align="right" className="bor">
-                {row.access}
-              </TableCell>
-              <TableCell align="right" className="bor">
-                {row.status}
-              </TableCell>
-              <TableCell align="right" className="lastCell">
+              {Object.values(row).map((cellValue, cellIndex) => (
+                <TableCell
+                  key={cellIndex}
+                  align="right"
+                  className='bor'
+                   style={{borderRight:cellIndex===3?'1px solid rgba(0, 0, 0, 0.34) ':null}}
+                >
+                  {cellValue}
+                </TableCell>
+              ))}
+              <TableCell align="right"   style={{
+                  borderTopRightRadius: '10px',
+                borderBottomRightRadius: '10px',
+                borderLeft:'1px solid black!important'
+                }}>
                 {selectAll || selectedRows.includes(row) ? ( // Conditionally render actions
                   <div className="mainActions">
                     <Tooltip title="Reload" placement="top">

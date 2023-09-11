@@ -8,6 +8,7 @@ import LeaveForm from "./Leave";
 import { FaLessThanEqual } from "react-icons/fa";
 import Profile from "./Profile";
 import CustomSearchInput from "../../../Components/Common/customSearch";
+import {EmployeeData} from './Table/Constant'
 
 const Employees = () => {
   const [searchBar, setSearchBar] = useState();
@@ -47,7 +48,7 @@ const Employees = () => {
           {addEmp && <AddEmployee setShowForm={setAddEmp} />}
           {leaveForm && <LeaveForm setLeaveForm={setLeaveForm} />}
           <div className="empTable">
-            <EmployeeTable searchVal={searchBar} setShow={setShow} />
+            <EmployeeTable searchVal={searchBar} setShow={setShow} data={EmployeeData} />
           </div>
         </>
       ) : (

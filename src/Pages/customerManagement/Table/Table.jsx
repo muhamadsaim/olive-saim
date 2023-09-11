@@ -10,58 +10,54 @@ import Tick from "../../../assets/icons/tick1.png";
 import Delete from "../../../assets/icons/delete.png";
 import Watch from "../../../assets/icons/Watch.png";
 import Theme from "../../../Theme/Theme";
-import Tooltip from '@mui/material/Tooltip';
-import { customerTableData } from "../../../Components/Common/Table/constant";
+import Tooltip from "@mui/material/Tooltip";
 
-const TableData = ({ searchVal }) => {
+
+const TableData = ({ searchVal,data }) => {
   const lightTheme = Theme();
-  const [rows, setRows] = useState(customerTableData);
-    const [filterData, setFilterData] = useState(customerTableData);
-    console.log('call table',searchVal)
+  const [rows, setRows] = useState(data);
+  const [filterData, setFilterData] = useState(data);
+  console.log("call table", searchVal);
 
   useEffect(() => {
     searchFilter();
   }, [searchVal]);
 
+  const tableHeaders = Object.keys(data[0] || {});
   const searchFilter = () => {
     if (!searchVal) {
       setFilterData(rows);
     } else {
       const filter = rows.filter((order) => {
-        return (
-          order.name.toLowerCase().includes(searchVal) ||
-          order.orderId.toLowerCase().includes(searchVal) ||
-          order.phone.toLowerCase().includes(searchVal) ||
-          order.loyalty.toLowerCase().includes(searchVal) ||
-          order.city.toLowerCase().includes(searchVal) ||
-          order.date.toLowerCase().includes(searchVal) ||
-          order.time.toLowerCase().includes(searchVal) ||
-          order.OilProcessed.toLowerCase().includes(searchVal)
+        return tableHeaders.some((header) =>
+          order[header].toLowerCase().includes(searchVal)
         );
       });
       setFilterData(filter);
     }
   };
+
+
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell
-              style={{
-                borderTopLeftRadius: "10px",
-                borderBottomLeftRadius: "10px",
-              }}
-            >
-              Order ID
-            </TableCell>
-            <TableCell align="right">Name</TableCell>
-            <TableCell align="right">Phone</TableCell>
-            <TableCell align="right">Loyalty</TableCell>
-            <TableCell align="right">City</TableCell>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Time</TableCell>
-            <TableCell align="right">Oil Processed</TableCell>
+          {tableHeaders.map((header, index) => (
+              <TableCell
+                key={index}
+                style={{
+                  borderTopLeftRadius: index === 0 ? "10px" : "0px",
+                  borderBottomLeftRadius: index === 0 ? "10px" : "0px",
+                  borderTopRightRadius:
+                    index === tableHeaders.length ? "10px" : "0px",
+                  borderBottomRightRadius:
+                    index === tableHeaders.length ? "10px" : "0px",
+                }}
+              >
+                {header}
+              </TableCell>
+            ))}
             <TableCell
               align="right"
               style={{
@@ -82,23 +78,18 @@ const TableData = ({ searchVal }) => {
               }}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell
-                component="th"
-                scope="row"
-                style={{
-                  borderTopLeftRadius: "10px",
-                  borderBottomLeftRadius: "10px",
-                }}
-              >
-                {row.orderId}
-              </TableCell>
-              <TableCell align="right">{row.name}</TableCell>
-              <TableCell align="right">{row.phone}</TableCell>
-              <TableCell align="right">{row.loyalty}</TableCell>
-              <TableCell align="right">{row.city}</TableCell>
-              <TableCell align="right">{row.date}</TableCell>
-              <TableCell align="right">{row.time}</TableCell>
-              <TableCell align="right">{row.OilProcessed}</TableCell>
+              {Object.values(row).map((cellValue, cellIndex) => (
+                <TableCell
+                  key={cellIndex}
+                  align="right"
+                  style={{
+                    borderTopLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                    borderBottomLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                  }}
+                >
+                  {cellValue}
+                </TableCell>
+              ))}
               <TableCell
                 align="right"
                 style={{
@@ -107,27 +98,14 @@ const TableData = ({ searchVal }) => {
                 }}
               >
                 <div className="mainActions">
-                  {/* <div
-                    className="circleC"
-                    style={{ backgroundColor: `${lightTheme.yellowIcon}` }}
-                  >
-                    <img src={Watch} alt="watch" height={15} />
-                  </div>
-                  <div
-                    className="circleC"
-                    style={{ backgroundColor: `${lightTheme.greenIcon}` }}
-                  >
-                    <img src={Tick} alt="tick" height={15} />
-                  </div> */}
-                          <Tooltip title="Delete"placement="top">
-                              
-                  <div
-                    className="circleC"
-                    style={{ backgroundColor: `${lightTheme.darkRed}` }}
+                  <Tooltip title="Delete" placement="top">
+                    <div
+                      className="circleC"
+                      style={{ backgroundColor: `${lightTheme.darkRed}` }}
                     >
-                    <img src={Delete} alt="delete" height={15} />
-                  </div>
-                      </Tooltip> 
+                      <img src={Delete} alt="delete" height={15} />
+                    </div>
+                  </Tooltip>
                 </div>
               </TableCell>
             </TableRow>
