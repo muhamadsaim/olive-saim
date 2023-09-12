@@ -12,9 +12,10 @@ import {EmployeeData} from './Table/Constant'
 
 const Employees = () => {
   const [searchBar, setSearchBar] = useState();
-  const [addEmp, setAddEmp] = useState(false);
-  const [leaveForm, setLeaveForm] = useState(false);
+  const [addEmp, setAddEmp] = useState(0);
+  const [leaveForm, setLeaveForm] = useState(0);
   const [show, setShow] = useState(true);
+  const address='/human-resources/employees'
   return (
     <div className="employeesMain">
       {show ? (
@@ -23,14 +24,14 @@ const Employees = () => {
             <p className="p1">Employees</p>
             <div className="btns">
               <Link to="leave-request" onClick={() => {
-                setLeaveForm(true)
-                setAddEmp(false)
+                setLeaveForm(1)
+                setAddEmp(0)
               }}>
                 Leave Request
               </Link>
               <Link to="add-employee" onClick={() => {
-                setLeaveForm(false)
-                setAddEmp(true)
+                setLeaveForm(0)
+                setAddEmp(1)
               }}>
                 + Add New
               </Link>
@@ -45,8 +46,8 @@ const Employees = () => {
             <CustomSearchInput placeholder="search" onSearchChange={setSearchBar} iconShow={true}/>
             </div>
           </div>
-          {addEmp && <AddEmployee setShowForm={setAddEmp} />}
-          {leaveForm && <LeaveForm setLeaveForm={setLeaveForm} />}
+          {(addEmp===1) && <AddEmployee setShowForm={setAddEmp} address={address}/>}
+          {(leaveForm===1) && <LeaveForm setShowForm={setLeaveForm} address={address}/>}
           <div className="empTable">
             <EmployeeTable searchVal={searchBar} setShow={setShow} data={EmployeeData} />
           </div>

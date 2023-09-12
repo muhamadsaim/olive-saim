@@ -13,7 +13,7 @@ import Theme from "../../../Theme/Theme";
 import Tooltip from "@mui/material/Tooltip";
 
 
-const TableData = ({ searchVal,data }) => {
+const TableData = ({ searchVal,data,setShowDelete }) => {
   const lightTheme = Theme();
   const [rows, setRows] = useState(data);
   const [filterData, setFilterData] = useState(data);
@@ -102,6 +102,7 @@ const TableData = ({ searchVal,data }) => {
                     <div
                       className="circleC"
                       style={{ backgroundColor: `${lightTheme.darkRed}` }}
+                      onClick={()=>setShowDelete(true)}
                     >
                       <img src={Delete} alt="delete" height={15} />
                     </div>

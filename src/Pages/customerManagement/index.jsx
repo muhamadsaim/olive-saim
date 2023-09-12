@@ -1,58 +1,70 @@
-import React, {useState} from 'react'
-import './Style.scss'
-import { Helmet } from 'react-helmet-async'
-import Theme from '../../Theme/Theme';
-import { Link, Outlet } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import Cards from '../../Components/Common/TopCards/Cards';
-import ProductionGraph from '../../Components/Common/ProductionGraphsTwo';
-import Search from '../../assets/icons/search.png'
-import CustomerTable from './Table/index';
-import CustomerForm from './CustomerForm/index';
-import CustomSearchInput from '../../Components/Common/customSearch';
+import React, { useState } from "react";
+import "./Style.scss";
+import { Helmet } from "react-helmet-async";
+import Theme from "../../Theme/Theme";
+import { Link, Outlet } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import Cards from "../../Components/Common/TopCards/Cards";
+import ProductionGraph from "../../Components/Common/ProductionGraphsTwo";
+import Search from "../../assets/icons/search.png";
+import CustomerTable from "./Table/index";
+import CustomerForm from "./CustomerForm/index";
+import CustomSearchInput from "../../Components/Common/customSearch";
+import DeletePopup from "../../Components/Common/DeletePopUp";
 
 const CustomerManagement = () => {
   const { t } = useTranslation();
   const lightTheme = Theme();
   const [searchBar, setSearchBar] = useState();
-  const[showForm,setShowForm]=useState(false)
+  const [showForm, setShowForm] = useState(0);
+  const[showDelete,setShowDelete]=useState(false)
+  const address = "/customer-management";
   return (
     <div>
       <Helmet>
         <title>Customer Management</title>
-        <meta name="Customer Management" content="This is a Customer Management page" />
+        <meta
+          name="Customer Management"
+          content="This is a Customer Management page"
+        />
       </Helmet>
       <div className="customerManagement">
         <div className="createCustomerDiv">
           <p className="p1" style={{ color: `${lightTheme.blackText}` }}>
             {t("Mills.1")}
           </p>
-          <Link to="create-customer" className="p2" onClick={() => setShowForm(true)}>+ Create New Customer</Link>
+          <Link
+            to="create-customer"
+            className="p2"
+            onClick={() => setShowForm(1)}
+          >
+            + Create New Customer
+          </Link>
         </div>
-          {
-            showForm && <div>
-              <CustomerForm setShowForm={setShowForm}/>
-            </div>
-          }
+        {showForm === 1 && (
+          <div>
+            <CustomerForm setShowForm={setShowForm} address={address} />
+          </div>
+        )}
         <Cards />
         <ProductionGraph />
-        <div className='customerTable'>
-          <p className='p1'>Customers</p>
-          {/* <div className="searchDiv">
-          <img src={Search} alt="search" height={20} />
-          <input
-            type="text"
-            placeholder="search"
-            onChange={(e) => setSearchBar(e.target.value)}
+        <div className="customerTableMain">
+          <p className="p1">Customers</p>
+          <CustomSearchInput
+            placeholder="search customer"
+            onSearchChange={setSearchBar}
+            iconShow={true}
           />
-          </div> */}
-          <CustomSearchInput placeholder="search customer" onSearchChange={setSearchBar} iconShow={true}/>
         </div>
-        <CustomerTable searchBar={searchBar} />
+        <div className="customerTable">
+          {
+            showDelete&&<DeletePopup show={setShowDelete}/>
+          }
+          <CustomerTable searchBar={searchBar} setShowDelete={setShowDelete} />
+        </div>
       </div>
-      {/* <Outlet/> */}
     </div>
-  )
-}
+  );
+};
 
-export default CustomerManagement
+export default CustomerManagement;

@@ -6,7 +6,7 @@ import AttachementImg from "../../../../assets/icons/attachment.png";
 import Calendar from "../../../../assets/icons/calendar.png";
 import CalendarCom from "../../../../Components/Common/Calendar/Calendar";
 
-const AddEmployee = ({ setShowForm }) => {
+const AddEmployee = ({ setShowForm,address }) => {
   const navigate = useNavigate();
   const [showCalendar, setShowCalendar] = useState(false);
   const [date, setCurDate] = useState();
@@ -23,8 +23,8 @@ const AddEmployee = ({ setShowForm }) => {
     }
   };
   const handleCancle = () => {
-    setShowForm(false);
-    navigate("/human-resources/employees", { replace: true });
+    setShowForm(0);
+    navigate(`${address}`, { replace: true });
   };
   return (
     <div className="addEmployee">

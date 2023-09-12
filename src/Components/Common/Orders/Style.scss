@@ -10,7 +10,32 @@
     align-items: center;
     margin-top:20px;
     .tabs {
-      button {
+      // button {
+      //   padding: 10px 12px;
+      //   border: none;
+      //   border-radius: 4px;
+      //   background-color: rgba(203, 217, 173, 1);
+      //   text-align: center;
+      //   font-size: 12px;
+      //   font-weight: 700;
+      //   color: white;
+      //   cursor: pointer;
+      //   width:100px;
+      // }
+      .SelectedTab{
+        padding: 10px 12px;
+        border: none;
+        border-radius: 4px;
+        background-color: rgb(144, 166, 123);
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: white;
+        cursor: pointer;
+        width:100px;
+        transform: scale(1.1);
+      }
+      .NotSelectedTab{
         padding: 10px 12px;
         border: none;
         border-radius: 4px;
@@ -48,5 +73,6 @@
     padding:20px;
     margin-top:20px;
     border-radius:10px;
+    position: relative;
   }
 }

@@ -7,10 +7,12 @@ import LabAndSystemTable from "../../Components/Common/LabAndSystemTable";
 import {maintenanceTable } from "../../Components/Common/Table/constant";
 import { Helmet } from "react-helmet-async";
 import AddService from "./AddService";
+import DeletePopup from "../../Components/Common/DeletePopUp";
 
 const SystemMaintenance = () => {
   const [searchBar, setSearchBar] = useState();
   const [show, setShow] = useState(false);
+  const [showDelete,setShowDelete]=useState(false)
   return (
     <div>
       <Helmet>
@@ -37,8 +39,11 @@ const SystemMaintenance = () => {
                   show&&<AddService setShow={setShow}/>
               }
           </div>
-          <div className="tableDiv">
-              <LabAndSystemTable data={maintenanceTable} searchVal={searchBar}/>
+        <div className="tableDiv">
+          {
+            showDelete && <DeletePopup show={setShowDelete} />
+          }
+          <LabAndSystemTable data={maintenanceTable} searchVal={searchBar} setShowDelete={setShowDelete} />
           </div>
       </div>
     </div>

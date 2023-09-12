@@ -14,7 +14,7 @@ const options = [
   { value: "Platinum", label: "Platinum" },
 ];
 
-const CustomerForm = ({ setShowForm }) => {
+const CustomerForm = ({ setShowForm,address}) => {
   const defaultValue = options[0];
   const [selectedOption, setSelectedOption] = useState(null);
   const [register, setRegister] = useState(false);
@@ -37,8 +37,8 @@ const CustomerForm = ({ setShowForm }) => {
     }
   };
   const handleCancle = () => {
-    setShowForm(false);
-    navigate("/customer-management", { replace: true });
+    setShowForm(0);
+    navigate(`${address}`, { replace: true });
   };
   return (
     <div className="customerForm">

@@ -63,7 +63,7 @@ const TableCom = ({ searchVal, activeBtn, data }) => {
                 onChange={toggleSelectAll}
               />
             </TableCell>
-         
+
             {tableHeaders.map((header, index) => (
               <TableCell
                 key={index}
@@ -81,7 +81,6 @@ const TableCom = ({ searchVal, activeBtn, data }) => {
         </TableHead>
         <TableBody>
           {filterData.map((row, index) => (
-           
             <TableRow
               key={row.index}
               style={{
@@ -117,8 +116,7 @@ const TableCom = ({ searchVal, activeBtn, data }) => {
                 >
                   {cellIndex === 4 ? (
                     <>
-                      
-                    <img src={Arrow} alt="arrow" height={6} />
+                      <img src={Arrow} alt="arrow" height={6} />
                       {cellValue}
                     </>
                   ) : (

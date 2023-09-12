@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import "./Style.scss";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-const AddOrder = ({ setShow }) => {
+const AddOrder = ({ setShowForm,address }) => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    navigate("/lab-service", { replace: true });
-    setShow(false);
+    navigate(`${address}`, { replace: true });
+    setShowForm(0);
   };
   return (
     <div className="addOrderMain">
@@ -56,7 +56,7 @@ const AddOrder = ({ setShow }) => {
             </div>
           </div>
         </div>
-        <div className="saveBtn">
+        <div className="saveBtnLab">
           <button onClick={handleClose}>Save</button>
         </div>
       </div>

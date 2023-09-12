@@ -12,7 +12,7 @@ import Watch from "../../../assets/icons/Watch.png";
 import Theme from "../../../Theme/Theme";
 import Tooltip from "@mui/material/Tooltip";
 
-const LabAndSystemTable = ({ searchVal, data }) => {
+const LabAndSystemTable = ({ searchVal, data,setShowDelete }) => {
   const lightTheme = Theme();
   const [rows, setRows] = useState(data);
   const [filterData, setFilterData] = useState(data);
@@ -115,6 +115,7 @@ const LabAndSystemTable = ({ searchVal, data }) => {
                     <div
                       className="circle"
                       style={{ backgroundColor: `${lightTheme.darkRed}` }}
+                      onClick={()=>setShowDelete(true)}
                     >
                       <img src={Delete} alt="delete" height={15} />
                     </div>

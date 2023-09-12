@@ -8,15 +8,15 @@ import Unpaid from "../../../../assets/icons/unpaid.png";
 import Calendar from "../../../../assets/icons/calendar.png";
 import CalendarCom from "../../../../Components/Common/Calendar/Calendar";
 
-const LeaveForm = ({ setLeaveForm }) => {
+const LeaveForm = ({ setShowForm,address }) => {
   const navigate = useNavigate();
   const [startDate, setStartDate] = useState();
   const [returnDate, setReturnDate] = useState();
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
   const handleCancle = () => {
-    setLeaveForm(false);
-    navigate("/human-resources/employees", { replace: true });
+    setShowForm(0);
+    navigate(`${address}`, { replace: true });
   };
   return (
     <div className="leaveMain">

@@ -14,11 +14,13 @@ import { tableData } from "./constant";
 import QrModal from "../../../Pages/orderManagement/QRmodal/QrModal";
 import Stations from "./Station";
 import Tooltip from "@mui/material/Tooltip";
+import DeletePopup from "../DeletePopUp";
 
-const TableCom = ({ tabVal, searchVal, qrcode, data }) => {
+const TableCom = ({ tabVal, searchVal, qrcode, data,setShowDelete }) => {
   const lightTheme = Theme();
   const [rows, setRows] = useState(data);
   const [filterData, setFilterData] = useState(data);
+  // const [showDelete,setShowDelete]=useState(false)
 
   useEffect(() => {
     filterTable();
@@ -137,6 +139,7 @@ const TableCom = ({ tabVal, searchVal, qrcode, data }) => {
                     <div
                       className="circle"
                       style={{ backgroundColor: `${lightTheme.darkRed}` }}
+                      onClick={()=>setShowDelete(true)}
                     >
                       <img src={Delete} alt="delete" height={15} />
                     </div>
@@ -154,6 +157,9 @@ const TableCom = ({ tabVal, searchVal, qrcode, data }) => {
           ))}
         </TableBody>
       </Table>
+      {/* {
+        showDelete && <DeletePopup show={setShowDelete} />
+      } */}
     </TableContainer>
   );
 };

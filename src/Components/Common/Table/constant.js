@@ -483,13 +483,13 @@ export const accessControlTable = [
     name: 'Huraira',
     role: 'CEO',
     access: 'Full Access',
-    status:'Acive'
+    status:'Active'
   },
   {
     name: 'Huraira',
     role: 'Manager',
     access: 'Standard Access',
-    status:'Acive'
+    status:'Active'
   },
   {
     name: 'Hamza',
@@ -507,13 +507,13 @@ export const accessControlTable = [
     name: 'Usman',
     role: 'Auditor',
     access: 'Lab Access',
-    status:'Acive'
+    status:'Active'
   },
   {
     name: 'ALi',
     role: 'Admin',
     access: 'Full Access',
-    status:'Acive'
+    status:'Active'
   },
 ]
 

@@ -7,18 +7,25 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import "./Style.scss";
 import Theme from "../../../Theme/Theme";
-import Close from '../../../assets/icons/circleClose.png'
-import Reload from '../../../assets/icons/circleReload.png'
+import Close from "../../../assets/icons/circleClose.png";
+import Edit from "../../../assets/icons/editGreen.png";
 import { Tooltip } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setSelectedRowData, openEditUser } from '../../../Redux/slice/accessControlEditUser';
 
-
-
-const TableCom = ({ searchVal, activeBtn,data }) => {
+const TableCom = ({ searchVal, data,setShowDelete }) => {
   const lightTheme = Theme(); // Assuming you have a Theme function defined
   const [rows, setRows] = useState(data);
   const [filterData, setFilterData] = useState(data);
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAll, setSelectAll] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleData = (row) => {
+    dispatch(setSelectedRowData(row))
+    dispatch(openEditUser())
+  }
 
   useEffect(() => {
     searchFilter();
@@ -39,23 +46,18 @@ const TableCom = ({ searchVal, activeBtn,data }) => {
     }
   };
 
-
-
   const toggleRow = (row) => {
     const updatedSelectedRows = selectedRows.includes(row)
       ? selectedRows.filter((selectedRow) => selectedRow !== row)
       : [...selectedRows, row];
     setSelectedRows(updatedSelectedRows);
-    activeBtn(false);
   };
 
   const toggleSelectAll = () => {
     if (selectAll) {
       setSelectedRows([]);
-      activeBtn(true);
     } else {
       setSelectedRows([...filterData]);
-      activeBtn(false);
     }
     setSelectAll(!selectAll);
   };
@@ -101,17 +103,16 @@ const TableCom = ({ searchVal, activeBtn,data }) => {
             <TableRow
               key={row.index}
               style={{
-                // background: index % 2 === 0 ? 'lightcoral' : 'red', // Alternate row background color
-                borderRadius: '10px', // Border radius for odd rows
+                borderRadius: "10px", // Border radius for odd rows
               }}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell
                 component="th"
                 scope="row"
                 style={{
-                  borderTopLeftRadius: '10px',
-                  borderBottomLeftRadius: '10px',
+                  borderTopLeftRadius: "10px",
+                  borderBottomLeftRadius: "10px",
                 }}
               >
                 <input
@@ -124,26 +125,36 @@ const TableCom = ({ searchVal, activeBtn,data }) => {
                 <TableCell
                   key={cellIndex}
                   align="right"
-                  className='bor'
-                   style={{borderRight:cellIndex===3?'1px solid rgba(0, 0, 0, 0.34) ':null}}
+                  className="bor"
+                  style={{
+                    borderRight:
+                      cellIndex === 3 ? "1px solid rgba(0, 0, 0, 0.34) " : null,
+                  }}
                 >
                   {cellValue}
                 </TableCell>
               ))}
-              <TableCell align="right"   style={{
-                  borderTopRightRadius: '10px',
-                borderBottomRightRadius: '10px',
-                borderLeft:'1px solid black!important'
-                }}>
+              <TableCell
+                align="right"
+                style={{
+                  borderTopRightRadius: "10px",
+                  borderBottomRightRadius: "10px",
+                  borderLeft: "1px solid black!important",
+                }}
+              >
                 {selectAll || selectedRows.includes(row) ? ( // Conditionally render actions
                   <div className="mainActions">
-                    <Tooltip title="Reload" placement="top">
-                      <div className="circle">
-                        <img src={Reload} alt="reload" height={20} />
+                    <Tooltip title="Edit" placement="top">
+                      <div className="circle" onClick={()=>handleData(row)
+                        
+                      }>
+                        <Link to="edit-user">
+                          <img src={Edit} alt="Edit" height={20} />
+                        </Link>
                       </div>
                     </Tooltip>
                     <Tooltip title="Delete" placement="top">
-                      <div className="circle">
+                      <div className="circle" onClick={()=>setShowDelete(true)}>
                         <img src={Close} alt="close" height={20} />
                       </div>
                     </Tooltip>
@@ -157,6 +168,5 @@ const TableCom = ({ searchVal, activeBtn,data }) => {
     </TableContainer>
   );
 };
-
 
 export default TableCom;
