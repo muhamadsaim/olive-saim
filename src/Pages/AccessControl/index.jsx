@@ -8,11 +8,18 @@ import { Link } from "react-router-dom";
 import AddUser from "./AddUser";
 import { Helmet } from "react-helmet-async";
 import { accessControlTable } from "../../Components/Common/Table/constant";
-
+import EditUser from "./EditUser";
+import { useSelector } from "react-redux";
+import DeletePopup from "../../Components/Common/DeletePopUp";
 
 const AccessControl = () => {
   const [searchBar, setSearchBar] = useState();
   const [show, setShow] = useState(false);
+  const [editShow, setEditShow] = useState(false);
+  const [showDelete,setShowDelete]=useState(false)
+  const isEditUserOpen = useSelector(
+    (state) => state.selectedRow.isEditUserOpen
+  );
   return (
     <div className="mainDivAccess">
       <Helmet>
@@ -32,8 +39,14 @@ const AccessControl = () => {
           />
         </div>
         {show && <AddUser setShow={setShow} />}
+        {isEditUserOpen && <EditUser />}
       </div>
-      <TableCom searchVal={searchBar} data={accessControlTable} />
+      <div className="accessTable">
+        {
+          showDelete && <DeletePopup show={setShowDelete} />
+}
+        <TableCom searchVal={searchBar} data={accessControlTable} setShowDelete={setShowDelete} />
+      </div>
     </div>
   );
 };
