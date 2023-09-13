@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Style.scss";
 import Emp from "../../../assets/icons/user.png";
 import Leave from "../../../assets/icons/leave.png";
-import RecPay from "../../../assets/icons/recpay.png";
+import NewStock from "../../../assets/icons/stock.png";
 import Receipt from "../../../assets/icons/receipt.png";
 import Complain from "../../../assets/icons/complain.png";
 import PayBill from "../../../assets/icons/paybill.png";
@@ -73,9 +73,9 @@ const GettingThingDone = () => {
             </Link>
             <div className="block">
               <div className="imgDiv">
-                <img src={RecPay} alt="Receive Payment" />
+                <img src={NewStock} alt="Add New Stock" />
               </div>
-              <p className="p3">Receive payments</p>
+              <p className="p3">Add New Stock</p>
             </div>
           </div>
           <div className="blocks" style={{ marginTop: "30px" }}>
