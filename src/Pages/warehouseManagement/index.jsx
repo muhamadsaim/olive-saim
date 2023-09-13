@@ -9,12 +9,14 @@ import SpareParts from "./SpareParts";
 import CustomSearchInput from "../../Components/Common/customSearch";
 import { Helmet } from "react-helmet-async";
 import { WarehouseOilTableData } from "../../Components/Common/Table/constant";
+import DeletePopup from "../../Components/Common/DeletePopUp";
 
 
 const WareHouse = () => {
   const [searchBar, setSearchBar] = useState();
   const [showForm, setShowForm] = useState(false);
   const [sparePart, setSparePart] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   return (
     <div>
       <Helmet>
@@ -64,7 +66,10 @@ const WareHouse = () => {
         </div>
         <div className="tableDiv">
           <div className="mainTable">
-            <WarehouseOilTable searchVal={searchBar} data={WarehouseOilTableData} />
+            {
+              showDelete&&<DeletePopup show={setShowDelete}/>
+            }
+            <WarehouseOilTable searchVal={searchBar} data={WarehouseOilTableData} setShowDelete={setShowDelete} />
           </div>
         </div>
       </div>

@@ -6,11 +6,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import "./Style.scss";
-import Watch from "../../../assets/icons/TableEye.png";
+import Delete from "../../../assets/icons/redDelete.png";
+import Edit from "../../../assets/icons/editGreen.png";
 import Theme from "../../../Theme/Theme";
 import Tooltip from "@mui/material/Tooltip";
 
-const WarehouseOilTable = ({ searchVal,data }) => {
+const WarehouseOilTable = ({ searchVal, data,setShowDelete }) => {
   const lightTheme = Theme();
   const [rows, setRows] = useState(data);
   const [filterData, setFilterData] = useState(data);
@@ -21,15 +22,14 @@ const WarehouseOilTable = ({ searchVal,data }) => {
 
   const tableHeaders = Object.keys(data[0] || {});
 
-
   const searchFilter = () => {
     if (!searchVal) {
       setFilterData(rows);
     } else {
       const filter = rows.filter((order) => {
-        return tableHeaders.some((header) => 
+        return tableHeaders.some((header) =>
           order[header].toLowerCase().includes(searchVal)
-        )
+        );
       });
       setFilterData(filter);
     }
@@ -39,7 +39,7 @@ const WarehouseOilTable = ({ searchVal,data }) => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-          {tableHeaders.map((header, index) => (
+            {tableHeaders.map((header, index) => (
               <TableCell
                 key={index}
                 style={{
@@ -74,7 +74,7 @@ const WarehouseOilTable = ({ searchVal,data }) => {
               }}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-             {Object.values(row).map((cellValue, cellIndex) => (
+              {Object.values(row).map((cellValue, cellIndex) => (
                 <TableCell
                   key={cellIndex}
                   align="right"
@@ -94,15 +94,16 @@ const WarehouseOilTable = ({ searchVal,data }) => {
                 }}
               >
                 <div className="mainActionsW">
-                  <Tooltip title="View" placement="top">
-                    <div
-                      className="circle"
-                      style={{ backgroundColor: `${lightTheme.yellowIcon}` }}
-                    >
-                      <img src={Watch} alt="watch" height={20} />
+                  <Tooltip title="Edit" placement="top">
+                    <div className="circle">
+                      <img src={Edit} alt="Edit" height={20} />
                     </div>
                   </Tooltip>
-                 
+                  <Tooltip title="Delete" placement="top">
+                    <div className="circle" onClick={() => setShowDelete(true)}>
+                      <img src={Delete} alt="delete" height={20} />
+                    </div>
+                  </Tooltip>
                 </div>
               </TableCell>
             </TableRow>
