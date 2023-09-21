@@ -23,31 +23,12 @@ const Employees = () => {
           <div className="employeeBtn">
             <p className="p1">Employees</p>
             <div className="btns">
-              <Link to="leave-request" onClick={() => {
-                setLeaveForm(1)
-                setAddEmp(0)
-              }}>
-                Leave Request
-              </Link>
-              <Link to="add-employee" onClick={() => {
-                setLeaveForm(0)
-                setAddEmp(1)
-              }}>
-                + Add New
-              </Link>
-              {/* <div className="searchDiv">
-                <img src={Search} alt="search" height={20} />
-                <input
-                  type="text"
-                  placeholder="search"
-                  onChange={(e) => setSearchBar(e.target.value)}
-                />
-              </div> */}
+              <LeaveForm address={address} />
+              <AddEmployee address={address}/>
+              
             <CustomSearchInput placeholder="search" onSearchChange={setSearchBar} iconShow={true}/>
             </div>
           </div>
-          {(addEmp===1) && <AddEmployee setShowForm={setAddEmp} address={address}/>}
-          {(leaveForm===1) && <LeaveForm setShowForm={setLeaveForm} address={address}/>}
           <div className="empTable">
             <EmployeeTable searchVal={searchBar} setShow={setShow} data={EmployeeData} />
           </div>

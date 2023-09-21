@@ -13,6 +13,8 @@ import { Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setSelectedRowData, openEditUser } from '../../../Redux/slice/accessControlEditUser';
+import DeletePopUp from "../../../Components/Common/DeletePopUp";
+import EditUser from "../EditUser";
 
 const TableCom = ({ searchVal, data,setShowDelete }) => {
   const lightTheme = Theme(); // Assuming you have a Theme function defined
@@ -144,20 +146,10 @@ const TableCom = ({ searchVal, data,setShowDelete }) => {
               >
                 {selectAll || selectedRows.includes(row) ? ( // Conditionally render actions
                   <div className="mainActions">
-                    <Tooltip title="Edit" placement="top">
-                      <div className="circle" onClick={()=>handleData(row)
-                        
-                      }>
-                        <Link to="edit-user">
-                          <img src={Edit} alt="Edit" height={20} />
-                        </Link>
-                      </div>
-                    </Tooltip>
-                    <Tooltip title="Delete" placement="top">
-                      <div className="circle" onClick={()=>setShowDelete(true)}>
-                        <img src={Close} alt="close" height={20} />
-                      </div>
-                    </Tooltip>
+                    <div onClick={()=>handleData(row)}>
+                      <EditUser/>
+                    </div>
+                    <DeletePopUp circleIcon={false}/>
                   </div>
                 ) : null}
               </TableCell>

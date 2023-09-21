@@ -61,10 +61,7 @@ const Order = ({ qrcode }) => {
         />
       </div>
       <div className="mainTable">
-        {
         
-        showDelete&&<DeletePopup show={setShowDelete}/>
-        }
         <TableCom
           tabVal={filterVal}
           searchVal={searchBar}

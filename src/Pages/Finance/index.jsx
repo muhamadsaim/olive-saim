@@ -2,11 +2,15 @@ import React,{useState} from "react";
 import "./Style.scss";
 import { Helmet } from "react-helmet-async";
 import { Link, Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveButtonFinance } from "../../Redux/slice/handleToggle";
 
 const Finance = () => {
-    const [toggleBtn, setToggleBtn] = useState(0);
+  const dispatch=useDispatch()
+  // const [toggleBtn, setToggleBtn] = useState(0);
+  const toggleBtn=useSelector((state)=>state.toggle.activeButtonIndexFinance)
     const handleButtonClick = (index) => {
-      setToggleBtn(index);
+      dispatch(setActiveButtonFinance(index))
     };
   return (
     <div>

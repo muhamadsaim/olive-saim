@@ -388,10 +388,10 @@ export const ledgerTableData = [
     totalCredit:'$20,000'
   },
   {
-    date: '04/09/2023',
+    date: '05/09/2023',
     description: 'Olive Oil System',
-    debit: '$10,000',
-    credit: '$10,000',
+    debit: '$20,000',
+    credit: '$20,000',
     totalDebit: '$20,000',
     totalCredit:'$20,000'
   },

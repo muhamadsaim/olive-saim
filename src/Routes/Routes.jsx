@@ -62,6 +62,12 @@ const NewService = lazy(() =>
   import("../Pages/SystemMaintenance/AddService/index")
 );
 const Communication = lazy(() => import("../Pages/communication/index"));
+const AddStock = lazy(() =>
+  import("../Pages/warehouseManagement/addStock/index")
+);
+const EditStock = lazy(() =>
+  import("../Pages/warehouseManagement/EditStock/index")
+);
 
 const AllRoutes = () => {
   return (
@@ -76,7 +82,8 @@ const AllRoutes = () => {
           <Route path="add-customer" element={<CustomerForm />} />
           <Route path="add-employee" element={<AddEmployee />} />
           <Route path="leave-request" element={<LeaveForm />} />
-          <Route path="add-test" element={<AddOrder/>} />
+          <Route path="add-test" element={<AddOrder />} />
+          <Route path="new-entry" element={<AccountForm />} />
         </Route>
         <Route path="/order-management" element={<OrderManagement />}>
           <Route path="new-order" element={<Form />} />
@@ -88,8 +95,12 @@ const AllRoutes = () => {
         <Route path="/warehouse-management" element={<WareHouse />}>
           <Route path="can-bottle" element={<CanBottleForm />} />
           <Route path="spare-parts" element={<SparePartsForm />} />
+          <Route path="add-stock" element={<AddStock />} />
+          <Route path="edit-stock" element={<EditStock />} />
         </Route>
-        <Route path="/oil-storage" element={<OilStorage />} />
+        <Route path="/oil-storage" element={<OilStorage />}>
+          <Route path="edit-stock" element={<EditStock />} />
+        </Route>
         <Route path="/human-resources" element={<HumanResource />}>
           <Route index element={<Overview />} />
           <Route path="overview" element={<Overview />} />

@@ -10,13 +10,21 @@ import CustomSearchInput from "../../Components/Common/customSearch";
 import { Helmet } from "react-helmet-async";
 import { WarehouseOilTableData } from "../../Components/Common/Table/constant";
 import DeletePopup from "../../Components/Common/DeletePopUp";
-
+import TransactionForm from "./addStock";
+import EditStock from "./EditStock";
+import { useSelector } from "react-redux";
 
 const WareHouse = () => {
   const [searchBar, setSearchBar] = useState();
   const [showForm, setShowForm] = useState(false);
   const [sparePart, setSparePart] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const [showStock, setShowStock] = useState(false);
+  const isEditStockOpen = useSelector(
+    (state) => state.selectedStock.isEditStockOpen
+  );
+  const address='/warehouse-management'
+ 
   return (
     <div>
       <Helmet>
@@ -28,27 +36,10 @@ const WareHouse = () => {
       </Helmet>
       <div className="wareHouseMain">
         <div className="bottleAndSpare">
-          <Link
-            to="can-bottle"
-            onClick={() => {
-              setShowForm(true);
-              setSparePart(false);
-            }}
-          >
-            Can and Bottle
-          </Link>
-          <Link
-            to="spare-parts"
-            onClick={() => {
-              setShowForm(false);
-              setSparePart(true);
-            }}
-          >
-            Spare Parts
-          </Link>
+          
+          <CanBottle/>
+          <SpareParts/>
         </div>
-        {showForm && <CanBottle setShowForm={setShowForm} />}
-        {sparePart && <SpareParts setSparePart={setSparePart} />}
         <div className="graphs">
           <ProductionGraph />
         </div>
@@ -56,20 +47,25 @@ const WareHouse = () => {
           <p className="p1">In Stock</p>
           <div className="stockBtn">
             <button>Adjusment</button>
-            <button>+ Add New</button>
+            <TransactionForm/>
             <CustomSearchInput
               placeholder="search"
               onSearchChange={setSearchBar}
               iconShow={true}
             />
+            
+            
           </div>
         </div>
         <div className="tableDiv">
           <div className="mainTable">
-            {
-              showDelete&&<DeletePopup show={setShowDelete}/>
-            }
-            <WarehouseOilTable searchVal={searchBar} data={WarehouseOilTableData} setShowDelete={setShowDelete} />
+            
+            <WarehouseOilTable
+              searchVal={searchBar}
+              data={WarehouseOilTableData}
+              setShowDelete={setShowDelete}
+              address={address}
+            />
           </div>
         </div>
       </div>

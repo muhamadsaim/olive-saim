@@ -6,13 +6,21 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import "./Style.scss";
-import Delete from "../../../assets/icons/redDelete.png";
-import Edit from "../../../assets/icons/editGreen.png";
 import Theme from "../../../Theme/Theme";
 import Tooltip from "@mui/material/Tooltip";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  setSelectedStockData,
+  openEditStock,
+  openEditOilStock,
+} from "../../../Redux/slice/stockEdit";
+import DeletePopUp from "../DeletePopUp";
+import EditStock from "../../../Pages/warehouseManagement/EditStock";
 
-const WarehouseOilTable = ({ searchVal, data,setShowDelete }) => {
+const WarehouseOilTable = ({ searchVal, data, address }) => {
   const lightTheme = Theme();
+  const dispatch = useDispatch();
   const [rows, setRows] = useState(data);
   const [filterData, setFilterData] = useState(data);
 
@@ -34,6 +42,13 @@ const WarehouseOilTable = ({ searchVal, data,setShowDelete }) => {
       setFilterData(filter);
     }
   };
+
+  const handleData = (data) => {
+    dispatch(setSelectedStockData(data));
+    dispatch(openEditStock());
+    dispatch(openEditOilStock());
+  };
+
   return (
     <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -94,16 +109,14 @@ const WarehouseOilTable = ({ searchVal, data,setShowDelete }) => {
                 }}
               >
                 <div className="mainActionsW">
-                  <Tooltip title="Edit" placement="top">
-                    <div className="circle">
-                      <img src={Edit} alt="Edit" height={20} />
-                    </div>
-                  </Tooltip>
-                  <Tooltip title="Delete" placement="top">
-                    <div className="circle" onClick={() => setShowDelete(true)}>
-                      <img src={Delete} alt="delete" height={20} />
-                    </div>
-                  </Tooltip>
+                    
+                  <div onClick={() => handleData(row)}>
+                  <EditStock
+                    address={address}
+                  />
+                  </div>
+
+                  <DeletePopUp circleIcon={false} />
                 </div>
               </TableCell>
             </TableRow>

@@ -29,17 +29,13 @@ const AccessControl = () => {
       <div className="div1">
         <p className="p1">Access Control</p>
         <div className="btnsDiv">
-          <Link to="new-user" onClick={() => setShow(true)}>
-            + Add User
-          </Link>
+          <AddUser/>
           <CustomSearchInput
             placeholder="search "
             onSearchChange={setSearchBar}
             iconShow={true}
           />
         </div>
-        {show && <AddUser setShow={setShow} />}
-        {isEditUserOpen && <EditUser />}
       </div>
       <div className="accessTable">
         {

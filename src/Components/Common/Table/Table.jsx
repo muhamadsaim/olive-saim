@@ -124,7 +124,7 @@ const TableCom = ({ tabVal, searchVal, qrcode, data,setShowDelete }) => {
                       className="circle"
                       style={{ backgroundColor: `${lightTheme.yellowIcon}` }}
                     >
-                      <img src={Watch} alt="watch" height={15} />
+                      <img src={Watch} alt="watch" height={17} />
                     </div>
                   </Tooltip>
                   <Tooltip title="Approved" placement="top">
@@ -135,15 +135,8 @@ const TableCom = ({ tabVal, searchVal, qrcode, data,setShowDelete }) => {
                       <img src={Tick} alt="tick" height={15} />
                     </div>
                   </Tooltip>
-                  <Tooltip title="Delete" placement="top">
-                    <div
-                      className="circle"
-                      style={{ backgroundColor: `${lightTheme.darkRed}` }}
-                      onClick={()=>setShowDelete(true)}
-                    >
-                      <img src={Delete} alt="delete" height={15} />
-                    </div>
-                  </Tooltip>
+                  
+                  <DeletePopup circleIcon={true}/>
                   {qrcode && (
                     <Tooltip title="QR Code" placement="top">
                       <div>

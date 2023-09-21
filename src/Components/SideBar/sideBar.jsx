@@ -136,7 +136,6 @@ const SideBar = () => {
                     fontWeight: "500",
                   }}
                 >
-                  {/* {t(`sidebar.${index+1}`)} */}
                   {item.name === "Dashboard & Analytics" ? (
                     <div style={{ display: "flex", alignItems: "center" }}>
                       {t(`sidebar.${index + 1}`)}

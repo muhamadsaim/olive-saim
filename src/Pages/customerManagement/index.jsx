@@ -33,19 +33,10 @@ const CustomerManagement = () => {
           <p className="p1" style={{ color: `${lightTheme.blackText}` }}>
             {t("Mills.1")}
           </p>
-          <Link
-            to="create-customer"
-            className="p2"
-            onClick={() => setShowForm(1)}
-          >
-            + Create New Customer
-          </Link>
+          
+            <CustomerForm  address={address} />
         </div>
-        {showForm === 1 && (
-          <div>
-            <CustomerForm setShowForm={setShowForm} address={address} />
-          </div>
-        )}
+
         <Cards />
         <ProductionGraph />
         <div className="customerTableMain">
@@ -57,9 +48,6 @@ const CustomerManagement = () => {
           />
         </div>
         <div className="customerTable">
-          {
-            showDelete&&<DeletePopup show={setShowDelete}/>
-          }
           <CustomerTable searchBar={searchBar} setShowDelete={setShowDelete} />
         </div>
       </div>

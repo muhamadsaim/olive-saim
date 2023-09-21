@@ -28,13 +28,13 @@ const OrderManagement = () => {
           <p className="p1" style={{ color: `${lightTheme.blackText}` }}>
             {t("Mills.1")}
           </p>
-          <Link to='./new-order' className="p2" onClick={()=>setShowForm(true)}>+ Create New Order</Link>
-         
+          {/* <Link to='./new-order' className="p2" onClick={()=>setShowForm(true)}>+ Create New Order</Link> */}
+         <Form/>
         </div>
-        {
+        {/* {
             showForm&&
           <Form setShowForm={setShowForm}/>
-          }
+          } */}
         <Cards />
         <OrderProductionGraph />
         <div>

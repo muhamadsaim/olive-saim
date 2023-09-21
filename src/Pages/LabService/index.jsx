@@ -24,21 +24,15 @@ const LabService = () => {
       <div className="div1">
         <p className="p1">Tests List</p>
         <div className="btnsDiv">
-          <Link to="new-order" onClick={() => setShow(1)}>
-            + Add New
-          </Link>
+         <AddOrder address={address}/>
           <CustomSearchInput
             placeholder="search "
             onSearchChange={setSearchBar}
             iconShow={true}
           />
         </div>
-        {show === 1 && <AddOrder setShowForm={setShow} address={address} />}
       </div>
       <div className="tableDiv">
-        {
-          showDelete && <DeletePopup show={setShowDelete} />
-        }
         <LabAndSystemTable data={labServiceTable} searchVal={searchBar} setShowDelete={setShowDelete} />
       </div>
     </div>

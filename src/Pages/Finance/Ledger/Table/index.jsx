@@ -8,10 +8,27 @@ import TableRow from "@mui/material/TableRow";
 import "./Style.scss";
 import Theme from "../../../../Theme/Theme";
 
-const LedgerTable = ({ data }) => {
+const LedgerTable = ({ data,searchValue }) => {
   const lightTheme = Theme();
   const [filterData, setFilterData] = useState(data);
   const tableHeaders = Object.keys(data[0] || {});
+
+  useEffect(() => {
+    searchFilter();
+  }, [searchValue]);
+
+  const searchFilter = () => {
+    if (!searchValue) {
+      setFilterData(data);
+    } else {
+      const filter = data.filter((order) => {
+        return tableHeaders.some((header) =>
+          order[header].toLowerCase().includes(searchValue)
+        );
+      });
+      setFilterData(filter);
+    }
+  };
 
   return (
     <div className="ledgerTable">

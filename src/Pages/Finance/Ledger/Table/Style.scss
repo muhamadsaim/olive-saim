@@ -5,7 +5,7 @@
     font-size: 20px !important;
     font-weight: 400 !important;
     border: none !important;
-    // background-color: none!important;/
+    background-color: transparent!important;
   }
 
   .MuiTableBody-root tr.MuiTableRow-root:nth-of-type(even) {
@@ -41,7 +41,6 @@
     border-left: 1px solid rgba(0, 0, 0, 0.2) !important;
   }
   .mainHeading {
-    background-color: none!important;
     .transaction {
       background-color: rgba(203, 217, 173, 1) !important;
     }

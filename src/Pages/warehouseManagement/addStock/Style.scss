@@ -1,0 +1,132 @@
+.transactionForm {
+    // z-index: 1 !important;
+    // background-color: white;
+    padding: 30px;
+    // background-color: white;
+    // width: 40%;
+    // border-radius: 10px;
+    // position: absolute;
+    // right: 29%;
+    .formDiv1 {
+      display: flex;
+      justify-content: space-between;
+      .p1 {
+        color: #000;
+        font-family: Poppins;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+  
+      }
+      .icon {
+        cursor: pointer;
+      }
+    }
+    
+    .toggleDiv1 {
+      display: flex;
+      padding: 15px 10px;
+      margin-top: 20px;
+      width: 100%;
+      .nameDiv1 {
+      width: 100%;
+  
+        .p5 {
+          color: rgba(0, 0, 0, 0.55);
+          font-size: 14px;
+          font-weight: 400;
+          margin-bottom: 3px;
+        }
+        .inputDiv1 {
+          display: flex;
+          align-items: center;
+      
+  
+          .nameDiv1 {
+            width: 100%;
+            input {
+              width: 90%;
+              padding: 8px 5px;
+              border: 1px solid rgba(144, 166, 123, 1);
+              font-size: 14px;
+              font-family: 400;
+              border-radius: 10px;
+            }
+            :focus {
+              outline: none;
+            }
+          }
+          .css-13cymwt-control {
+            border: 1px solid rgba(144, 166, 123, 1);
+            padding: 1px !important;
+            font-size: 12px !important;
+            border-radius: 10px !important;
+          }
+          .css-b62m3t-container {
+            width: 95% !important;
+          }
+          .css-1u9des2-indicatorSeparator {
+            width: 0 !important;
+          }
+          .nameDivv1 {
+            width: 50%;
+            input {
+              width: 80%;
+              padding: 15px 10px;
+           
+              font-size: 14px;
+              font-family: 400;
+              border-radius: 10px;
+            }
+            :focus {
+              outline: none;
+            }
+          }
+        }
+      }
+      .selectDiv {
+          width: 93%;
+          margin-top:10px;
+          // border:1px solid red;
+          .p3 {
+            color: rgba(0, 0, 0, 0.55);
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom:3px;
+          }
+        }
+    }
+    .buttons1 {
+      float: right;
+      margin-top:15px;
+      display: flex;
+      .btnCreate1 {
+        padding: 5px 15px;
+        text-align: center;
+        border: none;
+        border-radius: 8px;
+        background-color: rgba(144, 166, 123, 1);
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0 5px;
+        color: white;
+        cursor: pointer;
+        width: 40%;
+      }
+      .btnClose1 {
+        padding: 5px 15px;
+        width: 40%;
+        border: 1px solid rgb(144, 166, 123);
+      text-align: center;
+      background-color: white;
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      margin: 0 5px;
+      cursor: pointer;
+    text-decoration: none;
+      }
+    }
+  }

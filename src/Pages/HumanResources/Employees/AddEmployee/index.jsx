@@ -1,12 +1,43 @@
 import React, { useState,useRef } from "react";
 import "./Style.scss";
 import { IoMdClose } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
 import AttachementImg from "../../../../assets/icons/attachment.png";
-import Calendar from "../../../../assets/icons/calendar.png";
 import CalendarCom from "../../../../Components/Common/Calendar/Calendar";
+import Calendar from "../../../../assets/icons/calendar.png";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { Fade, Tooltip } from "@mui/material";
+import Theme from "../../../../Theme/Theme";
+import { openEmployeeForm,closeEmployeeForm } from "../../../../Redux/slice/handleshortcuts";
+import { useDispatch, useSelector } from "react-redux";
 
-const AddEmployee = ({ setShowForm,address }) => {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50%",
+  maxHeight: "80vh",
+  borderRadius: " 10px",
+  backgroundColor: "#fff",
+  boxShadow: "0px 4px 20px 0px rgba(238, 238, 238, 0.52)",
+  padding: "15px 0",
+  overflowY: "scroll",
+  scrollbarWidth: "none" /* Firefox */,
+  msOverflowStyle: "none" /* IE/Edge */,
+  "&::-webkit-scrollbar": {
+    width: "0px",
+    background: "transparent" /* Hide scrollbar in Chrome/Safari/Webkit */,
+  },
+};
+
+export default function AddEmployee({address}) {
+  const lightTheme = Theme();
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   const [showCalendar, setShowCalendar] = useState(false);
   const [date, setCurDate] = useState();
@@ -16,25 +47,41 @@ const AddEmployee = ({ setShowForm,address }) => {
     Attachement.current.click();
   };
 
+  const open=useSelector((state)=>state.shortcuts.isOpenE)
+
   const handleAttachement = (event) => {
     const selectedImg = event.target.files[0];
     if (selectedImg) {
       setAttach(selectedImg.name);
     }
   };
-  const handleCancle = () => {
-    setShowForm(0);
+  const dispatch = useDispatch();
+  const handleCancel = () => {
+    dispatch(closeEmployeeForm())
     navigate(`${address}`, { replace: true });
   };
+  const handleOpenForm = () => {
+    dispatch(openEmployeeForm())
+  }
   return (
-    <div className="addEmployee">
+    <div>
+      <Tooltip title="New Employee" position="top">
+      <Link to="add-employee" onClick={() =>handleOpenForm()}>
+                + Add New
+              </Link>
+      </Tooltip>
+
+      <Modal open={open} onClose={handleCancel} closeAfterTransition>
+        <Fade in={open}>
+          <Box sx={style}>
+          <div className="addEmployee">
       <div className="insideEmp">
         <div className="formDiv1">
           <p className="p1">Add Employee*</p>
           <IoMdClose
             color="#90A67B"
             size={20}
-            onClick={handleCancle}
+            onClick={handleCancel}
             className="icon"
           />
         </div>
@@ -116,13 +163,15 @@ const AddEmployee = ({ setShowForm,address }) => {
               />
             </div>
           )}
-          <div className="saveBtnAE" onClick={handleCancle}>
+          <div className="saveBtnAE" onClick={handleCancel}>
             <button>Save</button>
           </div>
         </div>
       </div>
     </div>
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
   );
-};
-
-export default AddEmployee;
+}

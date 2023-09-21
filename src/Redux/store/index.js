@@ -3,6 +3,9 @@ import navbarReducer, { resetState } from "../slice/NavbarValues";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // This imports Local Storage
 import SelectedRowReducer from '../slice/accessControlEditUser'
+import SelectedStockReducer from '../slice/stockEdit'
+import ShortcutSlice from '../slice/handleshortcuts'
+import ToggleButton from "../slice/handleToggle";
 
 const persistConfig = {
   key: "root", // This is the key used to store the data in Local Storage
@@ -15,7 +18,10 @@ const persistedReducer = persistReducer(persistConfig, navbarReducer);
 const store = configureStore({
   reducer: {
     value: persistedReducer,
-    selectedRow:SelectedRowReducer
+    selectedRow: SelectedRowReducer,
+    selectedStock: SelectedStockReducer,
+    shortcuts: ShortcutSlice,
+    toggle:ToggleButton
   },
 });
 

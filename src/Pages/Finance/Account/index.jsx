@@ -22,17 +22,16 @@ const Account = () => {
   const [show, setShow] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [active, setActive] = useState(true);
+  const address = "/finance/Chart-accounts";
   return (
     <div className="accountMain">
       <div className="div1">
         <p className="p1">Chart Of Accounts</p>
         <div className="btns">
           <Link>Run Report</Link>
-          <Link to="new-entry" onClick={() => setShowForm(true)}>
-            + New Entry
-          </Link>
+          <AccountForm address={address}/>
         </div>
-        {showForm && <AccountForm setShowForm={setShowForm} />}
+        
       </div>
       <div className="div2">
         <div className="filters">

@@ -1,11 +1,11 @@
 .customerForm {
-  z-index: 1 !important;
-  width: 50%;
-  background-color: white;
-  padding: 20px 20px;
-  border-radius: 10px;
-  position: absolute;
-  right: 20%;
+  // z-index: 1 !important;
+  // width: 50%;
+  // background-color: white;
+  padding: 20px;
+  // border-radius: 10px;
+  // position: absolute;
+  // right: 20%;
   .formDiv1 {
     display: flex;
     justify-content: space-between;
@@ -172,7 +172,7 @@
   }
   .buttons {
     float: right;
-    margin-top:15px;
+    margin:15px 0;
     button {
       padding: 10px 10px;
       text-align: center;

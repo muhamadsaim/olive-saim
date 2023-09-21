@@ -28,21 +28,15 @@ const SystemMaintenance = () => {
               <div className="div1">
         <p className="p2">Maintenance Schedule & Log</p>
         <div className="btnsDiv">
-          <Link to='new-service' onClick={() => setShow(true)}>+ Add New</Link>
-          <CustomSearchInput
+<AddService/>
+            <CustomSearchInput
             placeholder="search "
             onSearchChange={setSearchBar}
             iconShow={true}
           />
         </div>
-        {
-                  show&&<AddService setShow={setShow}/>
-              }
           </div>
         <div className="tableDiv">
-          {
-            showDelete && <DeletePopup show={setShowDelete} />
-          }
           <LabAndSystemTable data={maintenanceTable} searchVal={searchBar} setShowDelete={setShowDelete} />
           </div>
       </div>

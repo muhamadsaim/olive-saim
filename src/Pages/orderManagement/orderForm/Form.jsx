@@ -7,13 +7,43 @@ import Camera from "../../../assets/icons/camera.png";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { Fade, Tooltip } from "@mui/material";
+import Theme from "../../../Theme/Theme";
 
 const options = [
   { value: "Organic", label: "Organic" },
   { value: "In Organic", label: "In Organic" },
 ];
 
-const Form = ({ setShowForm }) => {
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50%",
+  maxHeight:'80vh',
+  borderRadius: " 10px",
+  backgroundColor: "#fff",
+  boxShadow: "0px 4px 20px 0px rgba(238, 238, 238, 0.52)",
+  padding: "15px 0",
+  overflowY: 'scroll',
+  scrollbarWidth: 'none', /* Firefox */
+  msOverflowStyle: 'none', /* IE/Edge */
+  '&::-webkit-scrollbar': {
+    width: '0px',
+    background: 'transparent', /* Hide scrollbar in Chrome/Safari/Webkit */
+  },
+};
+
+export default function Form() {
+  const lightTheme = Theme();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const defaultValue = options[0];
   const [selectedOption, setSelectedOption] = useState(null);
   const [register, setRegister] = useState(false);
@@ -46,11 +76,24 @@ const Form = ({ setShowForm }) => {
     }
   };
   const handleCancle = () => {
-    setShowForm(false);
+    handleClose()
     navigate("/order-management", { replace: true });
   };
+
   return (
-    <div className="formMain">
+    <div>
+      <Tooltip title="New Order" position="top">
+     <Link to='./new-order' className="p2" onClick={handleOpen}>+ Create New Order</Link>
+      </Tooltip>
+
+      <Modal
+        open={open}
+        onClose={handleCancle}
+        closeAfterTransition
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+          <div className="formMain">
       <div className="formDiv1">
         <div className="insideFormDiv1">
           <div className="cusInp">
@@ -161,7 +204,9 @@ const Form = ({ setShowForm }) => {
         <button>Create</button>
       </div>
     </div>
+          </Box>
+        </Fade>
+      </Modal>
+    </div>
   );
-};
-
-export default Form;
+}

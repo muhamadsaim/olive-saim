@@ -11,6 +11,7 @@ import Delete from "../../../assets/icons/delete.png";
 import Watch from "../../../assets/icons/Watch.png";
 import Theme from "../../../Theme/Theme";
 import Tooltip from "@mui/material/Tooltip";
+import DeletePopUp from "../DeletePopUp";
 
 const LabAndSystemTable = ({ searchVal, data,setShowDelete }) => {
   const lightTheme = Theme();
@@ -111,15 +112,7 @@ const LabAndSystemTable = ({ searchVal, data,setShowDelete }) => {
                       <img src={Tick} alt="tick" height={15} />
                     </div>
                   </Tooltip>
-                  <Tooltip title="Delete" placement="top">
-                    <div
-                      className="circle"
-                      style={{ backgroundColor: `${lightTheme.darkRed}` }}
-                      onClick={()=>setShowDelete(true)}
-                    >
-                      <img src={Delete} alt="delete" height={15} />
-                    </div>
-                  </Tooltip>
+                  <DeletePopUp circleIcon={true}/>
                 </div>
               </TableCell>
             </TableRow>
