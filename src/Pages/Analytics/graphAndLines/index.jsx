@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductionGraph from '../../../Components/Common/ProductionGraphs'
-import Lines from './Lines/Lines'
+import Lines from './ProductionLineGraph/index'
 
 const GraphAndLines = () => {
   return (
