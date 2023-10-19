@@ -9,6 +9,8 @@ import Delete from "../../../assets/icons/redDelete.png";
 import DeleteRed from "../../../assets/icons/delete.png";
 import Backdrop from '@mui/material/Backdrop';
 import Theme from "../../../Theme/Theme";
+import apiService from "../../../Services/apiService";
+import { ErrorMessage, SuccessMessage } from "../../../Helper/Message";
 
 const style = {
   position: "absolute",
@@ -22,11 +24,27 @@ const style = {
   padding: "15px 0",
 };
 
-export default function DeletePopUp({ circleIcon }) {
+export default function DeletePopUp({ circleIcon, id, url, reloadData }) {
+  console.log('id',id)
   const lightTheme = Theme();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleDeleteCustomer =async () => {
+    try {
+      const authToken = localStorage.getItem('authToken');
+      const response = await apiService('DELETE', `${url}/${id}`, {'x-usertoken':authToken}, {})
+      if (response.success) {
+        SuccessMessage(response.message)
+        reloadData();
+        handleClose();
+      } else {
+        ErrorMessage(response.message)
+      }
+    } catch (error) {
+      ErrorMessage("API Error",error)
+    }
+  }
 
   return (
     <div>
@@ -68,7 +86,7 @@ export default function DeletePopUp({ circleIcon }) {
                 <button className="buttonCancel" onClick={handleClose}>
                   Cancel
                 </button>
-                <button className="buttonDelete">Delete</button>
+                <button className="buttonDelete" onClick={()=>handleDeleteCustomer()}>Delete</button>
               </div>
             </div>
           </Box>
