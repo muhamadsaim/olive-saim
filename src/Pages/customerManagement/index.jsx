@@ -19,6 +19,9 @@ const CustomerManagement = () => {
   const [showForm, setShowForm] = useState(0);
   const[showDelete,setShowDelete]=useState(false)
   const address = "/customer-management";
+
+  const authToken=localStorage.getItem('authToken')
+  
   return (
     <div>
       <Helmet>
@@ -34,7 +37,7 @@ const CustomerManagement = () => {
             {t("Mills.1")}
           </p>
           
-            <CustomerForm  address={address} />
+          <CustomerForm address={address} authToken={authToken} />
         </div>
 
         <Cards />

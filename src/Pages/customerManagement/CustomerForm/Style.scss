@@ -26,6 +26,56 @@
     padding: 15px 20px;
     margin-top: 20px;
     .nameDiv {
+      .textAndError{
+display: flex;
+align-items: center;
+justify-content: space-between;
+        .p5 {
+          color: rgba(0, 0, 0, 0.55);
+          font-size: 14px;
+          font-weight: 400;
+          margin-bottom: 3px;
+        }
+        .error{
+          color: red;
+          font-size:10px;
+        }
+      }
+      .inputDiv {
+        display: flex;
+        align-items: center;
+        .nameDiv {
+          width: 50%;
+          input {
+            width: 75%;
+            padding: 15px 10px;
+            border: 1px solid rgba(144, 166, 123, 1);
+            font-size: 14px;
+            font-family: 400;
+            border-radius: 10px;
+          }
+          :focus {
+            outline: none;
+          }
+        }
+        .nameDivv {
+          width: 50%;
+          input {
+            width: 80%;
+            padding: 15px 10px;
+            border: 1px solid rgba(144, 166, 123, 1);
+            font-size: 14px;
+            font-family: 400;
+            border-radius: 10px;
+          }
+          :focus {
+            outline: none;
+          }
+        }
+      }
+    }
+    .orderDiv{
+      width:50%;
       .p5 {
         color: rgba(0, 0, 0, 0.55);
         font-size: 14px;
@@ -36,7 +86,7 @@
         display: flex;
         align-items: center;
         .nameDiv {
-          width: 50%;
+          width: 100%;
           input {
             width: 75%;
             padding: 15px 10px;

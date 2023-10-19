@@ -6,7 +6,7 @@ export const SuccessMessage = (message) => {
         icon: 'success',
         title: `${message}`,
         showConfirmButton: false,
-      timer: 1500,
+      timer: 1000,
       })
 }
 
