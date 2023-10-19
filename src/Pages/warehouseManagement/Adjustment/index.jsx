@@ -18,6 +18,12 @@ import { ErrorMessage, SuccessMessage } from "../../../Helper/Message";
 import apiService from "../../../Services/apiService";
 import { ReloadOrderBill } from "../../../Redux/slice/authSlice";
 
+const reasonOptions = [
+  { label: "Wasted", value: "Wasted" },
+  { label: "Order", value: "Order" },
+  { label: "Other", value: "Other" },
+];
+
 const paymentOptions = [
   { label: "By Cash", value: "By Cash" },
   { label: "By Card", value: "By Card" },
@@ -43,36 +49,73 @@ const style = {
   },
 };
 
-export default function TransactionForm() {
+export default function Adjustment() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const lightTheme = Theme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const authorized = localStorage.getItem("userName");
-  const open = useSelector((state) => state.shortcuts.isOpenS);
+  // const open = useSelector((state) => state.shortcuts.isOpenS);
   const reloadOrderBill = useSelector((state) => state.auth.reloadOrderBill);
   const [formData, setFormData] = useState({
     cans: "",
-    orderId: "New Inventory",
-    payment: "",
+    orderId: "",
+    reason: "",
     authorized: authorized,
-    inOut: "In",
+    reasonValue: "",
+    payment: "",
+    adjusted: "adjusted",
   });
   const [formDataError, setFormDataError] = useState({
     cans: "",
-    // orderId: "",
+    reason: "",
     payment: "",
+    reasonValue: "",
+    orderId: "",
   });
+
+  const handleSelectReason = (selectedOption) => {
+    if (selectedOption.value === "Order") {
+      setFormData({
+        ...formData,
+        reason: selectedOption.value,
+        reasonValue: "",
+      });
+    } else if (selectedOption.value === "Other") {
+      setFormData({
+        ...formData,
+        reason: selectedOption.value,
+        orderId: "",
+      });
+    } else {
+      setFormData({
+        ...formData,
+        reason: selectedOption.value,
+        orderId: "",
+        reasonValue: "",
+      });
+    }
+  };
 
   const handleSelectPayment = (selectedOption) => {
     setFormData({
       ...formData,
       payment: selectedOption.value,
     });
+    if (selectedOption.value) {
+      setFormDataError({
+        ...formDataError,
+        payment: null,
+      });
+    }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    const alphabetRegex = /^[A-Za-z]+$/;
+    const alphabetRegex = /^[A-Za-z\s]+$/;
     const numericRegex = /^[0-9-]+$/;
     const updateFormErrors = (fieldName, regex, error) => {
       if (!regex.test(value)) {
@@ -94,13 +137,20 @@ export default function TransactionForm() {
         );
         break;
 
-      // case "orderId":
-      //   updateFormErrors(
-      //     "orderId",
-      //     numericRegex,
-      //     "It should contain only numbers"
-      //   );
-      //   break;
+      case "orderId":
+        updateFormErrors(
+          "orderId",
+          numericRegex,
+          "It should contain only numbers"
+        );
+        break;
+      case "reasonValue":
+        updateFormErrors(
+          "reasonValue",
+          alphabetRegex,
+          "It should contain only alphabets"
+        );
+        break;
     }
 
     setFormData({
@@ -110,26 +160,26 @@ export default function TransactionForm() {
   };
 
   const handleCancel = () => {
-    dispatch(closeStockForm());
     emptyForm();
+    handleClose();
     navigate("/warehouse-management/can-and-bottles", { replace: true });
-  };
-  const handleOpenForm = () => {
-    dispatch(openStockForm());
   };
 
   const emptyForm = () => {
     setFormData({
       cans: "",
-      orderId: "New Inventory",
-      payment: "",
-      inOut: 'In',
-      authorized:authorized
+      orderId: "",
+      reason: "",
+      reasonValue: "",
+      authorized: authorized,
+      adjusted: "adjusted",
     });
     setFormDataError({
       cans: "",
       // orderId: "",
-      payment: "",
+      reason: "",
+      orderId: "",
+      reasonValue: "",
     });
   };
   useEffect(() => {}, [formDataError]);
@@ -138,7 +188,21 @@ export default function TransactionForm() {
     e.preventDefault();
     const authToken = localStorage.getItem("authToken");
     try {
-      const requiredFields = ["cans", "payment"];
+      const requiredFields = ["cans", "reason", "payment"];
+      if (formData.reason === "Order") {
+        setFormData({
+          ...formData,
+          reasonValue: "",
+        });
+        requiredFields.push("orderId");
+      }
+      if (formData.reason === "Other") {
+        setFormData({
+          ...formData,
+          orderId: "",
+        });
+        requiredFields.push("reasonValue");
+      }
       const fieldError = {};
       requiredFields.forEach((field) => {
         if (!formData[field]) {
@@ -152,10 +216,10 @@ export default function TransactionForm() {
         }));
         return;
       }
-      console.log('formData',formData)
+      console.log("formData", formData);
       const response = await apiService(
         "POST",
-        "/stock/add-stock",
+        "/stock/adjust-stock",
         { "x-usertoken": authToken },
         formData
       );
@@ -175,18 +239,23 @@ export default function TransactionForm() {
 
   return (
     <div>
-      <Tooltip title="Add New" position="top">
-        <Link to="add-stock" onClick={() => handleOpenForm()}>
-          + Add New
+      <Tooltip title="Adjustment" position="top">
+        <Link to="adjust-stock" onClick={() => handleOpen()}>
+          Adjustment
         </Link>
       </Tooltip>
-
-      <Modal open={open} onClose={handleCancel} closeAfterTransition>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleCancel}
+        closeAfterTransition
+      >
         <Fade in={open}>
           <Box sx={style}>
             <div className="transactionForm">
               <div className="formDiv1">
-                <p className="p1">Add New</p>
+                <p className="p1">Adjustment</p>
                 <IoMdClose
                   color="black"
                   size={20}
@@ -194,74 +263,9 @@ export default function TransactionForm() {
                   className="icon"
                 />
               </div>
+
               <div className="toggleDiv1">
-                {/* <div className="nameDiv1">
-          <p className="p5">Transaction id</p>
-          <div className="inputDiv1">
-            <div className="nameDiv1">
-              <input type="text" />
-            </div>
-          </div>
-        </div> */}
-                {/* <div className="nameDiv1">
-          <p className="p5">In/Out</p>
-          <div className="inputDiv1">
-            <div className="nameDiv1">
-              <input type="text" />
-            </div>
-          </div>
-        </div> */}
-              </div>
-              <div className="toggleDiv1">
-                {/* <div className="nameDiv1">
-                  <div className="textAndError">
-                    <p className="p5">Number of Cans</p>
-                    {formDataError.cans && (
-                      <span className="error">{formDataError.cans}</span>
-                    )}
-                  </div>
-                  <div className="inputDiv1">
-                    <div className="nameDiv1">
-                      <input
-                        type="text"
-                        name="cans"
-                        placeholder="4"
-                        value={formData.cans}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div className="nameDiv1">
-                  <div className="textAndError">
-                    <p className="p5">Linked Order ID</p>
-                    {formDataError.orderId && (
-                      <span className="error">{formDataError.orderId}</span>
-                    )}
-                  </div>
-                  <div className="inputDiv1">
-                    <div className="nameDiv1">
-                      <input
-                        type="text"
-                        name="orderId"
-                        placeholder="Order Id"
-                        value={formData.orderId}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div className="nameDiv1">
-          <p className="p5">Authorize By</p>
-          <div className="inputDiv1">
-            <div className="nameDiv1">
-              <input type="text" />
-            </div>
-          </div>
-        </div> */}
-              </div>
-              <div className="toggleDiv1">
-              <div className="nameDiv1">
+                <div className="nameDiv1">
                   <div className="textAndError">
                     <p className="p5">Number of Cans</p>
                     {formDataError.cans && (
@@ -295,6 +299,72 @@ export default function TransactionForm() {
                         )}
                         onChange={handleSelectPayment}
                         options={paymentOptions}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="toggleDiv1">
+                {formData.reason === "Order" && (
+                  <div className="nameDiv1">
+                    <div className="textAndError">
+                      <p className="p5">Order id</p>
+                      {formDataError && (
+                        <span className="error">{formDataError.orderId}</span>
+                      )}
+                    </div>
+                    <div className="inputDiv1">
+                      <div className="nameDiv1">
+                        <input
+                          type="text"
+                          name="orderId"
+                          placeholder="1234-56"
+                          value={formData.orderId}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+                {formData.reason === "Other" && (
+                  <div className="nameDiv1">
+                    <div className="textAndError">
+                      <p className="p5">Provide Reason</p>
+                      {formDataError && (
+                        <span className="error">
+                          {formDataError.reasonValue}
+                        </span>
+                      )}
+                    </div>
+                    <div className="inputDiv1">
+                      <div className="nameDiv1">
+                        <input
+                          type="text"
+                          name="reasonValue"
+                          placeholder="Explain"
+                          value={formData.reasonValue}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="nameDiv1">
+                  <div className="textAndError">
+                    <p className="p5">Reasons</p>
+                    {formDataError.reason && (
+                      <span className="error">{formDataError.reason}</span>
+                    )}
+                  </div>
+                  <div className="inputDiv1">
+                    <div className="nameDiv1">
+                      <Select
+                        value={reasonOptions.find(
+                          (option) => option.value === formData.reason
+                        )}
+                        onChange={handleSelectReason}
+                        options={reasonOptions}
                       />
                     </div>
                   </div>

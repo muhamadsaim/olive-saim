@@ -15,6 +15,8 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { Fade, Tooltip } from "@mui/material";
 import Theme from "../../../Theme/Theme";
+import { ErrorMessage } from "../../../Helper/Message";
+import apiService from "../../../Services/apiService";
 
 const paymentOptions = [
   { label: "By Cash", value: "By Cash" },
@@ -41,13 +43,12 @@ const style = {
   },
 };
 
-export default function EditStock({ address }) {
+export default function EditStock({ address,reload }) {
   const lightTheme = Theme();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
   const selectedStock = useSelector((state) => state.selectedStock.data);
   const [id, setId] = useState();
@@ -57,16 +58,28 @@ export default function EditStock({ address }) {
   const [inOut, setInOut] = useState();
   const [payment, setPayment] = useState(null);
 
+
+
+  const deleteBill =async () => {
+    try {
+      const response=await apiService('DELETE','/order/delete-bill')
+    } catch (error) {
+      ErrorMessage('Api Error',error)
+    }
+  }
+
+
+
   useEffect(() => {
     if (selectedStock) {
-      setId(selectedStock.transactionId);
-      setAmount(selectedStock.amount);
-      setAuth(selectedStock.authorized);
-      setLinkedOrder(selectedStock.linkedOrder);
-      setInOut(selectedStock.inOut);
+      setId(selectedStock.TransactionId);
+      setAmount(selectedStock.RawMaterial);
+      setAuth(selectedStock.AuthorizedBy);
+      setLinkedOrder(selectedStock.LinkedOrder);
+      setInOut(selectedStock.InOut);
       setPayment(
         paymentOptions.find(
-          (option) => option.value === selectedStock.paymentMethod
+          (option) => option.value === selectedStock.Payment
         )
       );
     }
