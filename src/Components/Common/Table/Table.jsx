@@ -15,12 +15,43 @@ import QrModal from "../../../Pages/orderManagement/QRmodal/QrModal";
 import Stations from "./Station";
 import Tooltip from "@mui/material/Tooltip";
 import DeletePopup from "../DeletePopUp";
+import apiService from "../../../Services/apiService";
+import { ErrorMessage, SuccessMessage } from "../../../Helper/Message";
+import { useSelector } from "react-redux";
+import Loading from "../Loading";
+import TransactionOrder from "../../../Pages/orderManagement/TransactionOrder";
 
-const TableCom = ({ tabVal, searchVal, qrcode, data,setShowDelete }) => {
+const TableCom = ({ tabVal, searchVal, qrcode, setShowDelete }) => {
   const lightTheme = Theme();
-  const [rows, setRows] = useState(data);
-  const [filterData, setFilterData] = useState(data);
-  // const [showDelete,setShowDelete]=useState(false)
+  const [filterData, setFilterData] = useState([]);
+  const [dataa, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const reloadOrder = useSelector((state) => state.auth.reloadOrder);
+
+  const getOrders = async () => {
+    try {
+      setData([]);
+      setLoading(true);
+      const response = await apiService("GET", "/order/all-orders", {}, {});
+      if (response.success) {
+        setData(response.data);
+        setFilterData(response.data);
+        setLoading(false);
+      }
+    } catch (error) {
+      ErrorMessage(error);
+    }
+  };
+
+ 
+
+  const reload = () => {
+    getOrders();
+  };
+
+  useEffect(() => {
+    getOrders();
+  }, [reloadOrder]);
 
   useEffect(() => {
     filterTable();
@@ -28,9 +59,9 @@ const TableCom = ({ tabVal, searchVal, qrcode, data,setShowDelete }) => {
 
   const filterTable = () => {
     if (tabVal === "All") {
-      setFilterData(rows); // Show all data
+      setFilterData(dataa);
     } else {
-      const filter = rows.filter((order) => order.status === tabVal);
+      const filter = dataa.filter((order) => order.Status === tabVal);
       setFilterData(filter);
     }
   };
@@ -39,13 +70,17 @@ const TableCom = ({ tabVal, searchVal, qrcode, data,setShowDelete }) => {
     searchFilter();
   }, [searchVal]);
 
-  const tableHeaders = Object.keys(data[0] || {});
+  const notRequired = ["ObjId"];
+  const AlltableHeaders = Object.keys(dataa[0] || {});
+  const tableHeaders = AlltableHeaders.filter(
+    (field) => !notRequired.includes(field)
+  );
 
   const searchFilter = () => {
     if (!searchVal) {
-      setFilterData(rows);
+      setFilterData(dataa);
     } else {
-      const filter = rows.filter((order) => {
+      const filter = dataa.filter((order) => {
         return tableHeaders.some((header) =>
           order[header].toLowerCase().includes(searchVal)
         );
@@ -56,59 +91,25 @@ const TableCom = ({ tabVal, searchVal, qrcode, data,setShowDelete }) => {
 
   return (
     <TableContainer>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-         
-          <TableRow>
-            {tableHeaders.map((header, index) => (
-              <TableCell
-                key={index}
-                style={{
-                  borderTopLeftRadius: index === 0 ? "10px" : "0px",
-                  borderBottomLeftRadius: index === 0 ? "10px" : "0px",
-                  borderTopRightRadius:
-                    index === tableHeaders.length ? "10px" : "0px",
-                  borderBottomRightRadius:
-                    index === tableHeaders.length ? "10px" : "0px",
-                }}
-              >
-                {header}
-              </TableCell>
-            ))}
-            <TableCell
-              align="right"
-              style={{
-                borderTopRightRadius: "10px",
-                borderBottomRightRadius: "10px",
-              }}
-            >
-              Actions
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {filterData.map((row, index) => (
-            <TableRow
-              key={row.index}
-              style={{
-                borderRadius: "10px",
-              }}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              {Object.entries(row).map(([key, cellValue], cellIndex) => (
+      {loading ? (
+        <Loading />
+      ) : (
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              {tableHeaders.map((header, index) => (
                 <TableCell
-                  key={cellIndex}
-                  align="right"
+                  key={index}
                   style={{
-                    borderTopLeftRadius: cellIndex === 0 ? "10px" : "0px",
-                    borderBottomLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                    borderTopLeftRadius: index === 0 ? "10px" : "0px",
+                    borderBottomLeftRadius: index === 0 ? "10px" : "0px",
+                    borderTopRightRadius:
+                      index === tableHeaders.length ? "10px" : "0px",
+                    borderBottomRightRadius:
+                      index === tableHeaders.length ? "10px" : "0px",
                   }}
                 >
-                  {key === "status" ? (
-                    <Stations status={cellValue} />
-                  ) : (
-                    cellValue
-                  )}
+                  {header}
                 </TableCell>
               ))}
               <TableCell
@@ -118,41 +119,66 @@ const TableCom = ({ tabVal, searchVal, qrcode, data,setShowDelete }) => {
                   borderBottomRightRadius: "10px",
                 }}
               >
-                <div className="mainActions">
-                  <Tooltip title="Pending" placement="top">
-                    <div
-                      className="circle"
-                      style={{ backgroundColor: `${lightTheme.yellowIcon}` }}
-                    >
-                      <img src={Watch} alt="watch" height={17} />
-                    </div>
-                  </Tooltip>
-                  <Tooltip title="Approved" placement="top">
-                    <div
-                      className="circle"
-                      style={{ backgroundColor: `${lightTheme.greenIcon}` }}
-                    >
-                      <img src={Tick} alt="tick" height={15} />
-                    </div>
-                  </Tooltip>
-                  
-                  <DeletePopup circleIcon={true}/>
-                  {qrcode && (
-                    <Tooltip title="QR Code" placement="top">
-                      <div>
-                        <QrModal orderData={row} />
-                      </div>
-                    </Tooltip>
-                  )}
-                </div>
+                Actions
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      {/* {
-        showDelete && <DeletePopup show={setShowDelete} />
-      } */}
+          </TableHead>
+          <TableBody>
+            {filterData.map((row, index) => (
+              <TableRow
+                key={row.index}
+                style={{
+                  borderRadius: "10px",
+                }}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                {tableHeaders.map((key, cellIndex) => (
+                  <TableCell
+                    key={cellIndex}
+                    align="right"
+                    style={{
+                      borderTopLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                      borderBottomLeftRadius: cellIndex === 0 ? "10px" : "0px",
+                    }}
+                  >
+                    {row[key]}
+                  </TableCell>
+                ))}
+                <TableCell
+                  align="right"
+                  style={{
+                    borderTopRightRadius: "10px",
+                    borderBottomRightRadius: "10px",
+                  }}
+                >
+                  <div className="mainActions">
+                    <Stations
+                      status={row["Status"]}
+                      orderId={row["OrderId"]}
+                      reload={reload}
+                    />
+                    <TransactionOrder orderId={row["OrderId"]} reload={reload} />
+
+                    <DeletePopup
+                      circleIcon={true}
+                      id={row.ObjId}
+                      url={"/order/delete-order"}
+                      reloadData={reload}
+                    />
+                    {qrcode && (
+                      <Tooltip title="QR Code" placement="top">
+                        <div>
+                          <QrModal orderData={row} />
+                        </div>
+                      </Tooltip>
+                    )}
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      )}
     </TableContainer>
   );
 };

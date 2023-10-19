@@ -71,8 +71,11 @@
   .mainTable{
     background-color: white;
     padding:20px;
+    // width:90%;
     margin-top:20px;
     border-radius:10px;
     position: relative;
+    height: 400px;
+    overflow: auto;
   }
 }

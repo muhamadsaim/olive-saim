@@ -66,7 +66,7 @@ const Order = ({ qrcode }) => {
           tabVal={filterVal}
           searchVal={searchBar}
           qrcode={qrcodeVal}
-          data={tableData}
+          // data={tableData}
           setShowDelete={setShowDelete}
         />
       </div>
