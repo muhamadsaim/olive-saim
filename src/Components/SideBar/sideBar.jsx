@@ -92,7 +92,6 @@ const SideBar = () => {
       localStorage.setItem("selectedItemIndex", 0);
     }
 
-    //   // Clear the stored index when the application starts
     return () => {
       localStorage.removeItem("selectedItemIndex");
     };

@@ -6,6 +6,7 @@ import SelectedRowReducer from '../slice/accessControlEditUser'
 import SelectedStockReducer from '../slice/stockEdit'
 import ShortcutSlice from '../slice/handleshortcuts'
 import ToggleButton from "../slice/handleToggle";
+import AuthSlice from '../slice/authSlice'
 
 const persistConfig = {
   key: "root", // This is the key used to store the data in Local Storage
@@ -21,7 +22,8 @@ const store = configureStore({
     selectedRow: SelectedRowReducer,
     selectedStock: SelectedStockReducer,
     shortcuts: ShortcutSlice,
-    toggle:ToggleButton
+    toggle: ToggleButton,
+    auth:AuthSlice
   },
 });
 
