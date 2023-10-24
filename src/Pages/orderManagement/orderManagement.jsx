@@ -12,7 +12,7 @@ import Form from "./orderForm/Form";
 
 const OrderManagement = () => {
   const lightTheme = Theme();
-  const [showForm,setShowForm]=useState(false)
+  const [showForm, setShowForm] = useState(false);
   const { t } = useTranslation();
   return (
     <div>
@@ -28,20 +28,14 @@ const OrderManagement = () => {
           <p className="p1" style={{ color: `${lightTheme.blackText}` }}>
             {t("Mills.1")}
           </p>
-          <Link to='./new-order' className="p2" onClick={()=>setShowForm(true)}>+ Create New Order</Link>
-         
+
+          <Form />
         </div>
-        {
-            showForm&&
-          <Form setShowForm={setShowForm}/>
-          }
+
         <Cards />
         <OrderProductionGraph />
-        <div>
-          <Order qrcode={true} />
-        </div>
+        <Order qrcode={true} />
       </div>
-      {/* <Outlet/> */}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Search from '../../../assets/icons/search.png'
+import './Style.scss'
 
 const CustomSearchInput = ({ placeholder, onSearchChange,iconShow }) => {
   const [searchValue, setSearchValue] = useState('');

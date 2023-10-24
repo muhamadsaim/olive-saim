@@ -388,10 +388,10 @@ export const ledgerTableData = [
     totalCredit:'$20,000'
   },
   {
-    date: '04/09/2023',
+    date: '05/09/2023',
     description: 'Olive Oil System',
-    debit: '$10,000',
-    credit: '$10,000',
+    debit: '$20,000',
+    credit: '$20,000',
     totalDebit: '$20,000',
     totalCredit:'$20,000'
   },
@@ -483,13 +483,13 @@ export const accessControlTable = [
     name: 'Huraira',
     role: 'CEO',
     access: 'Full Access',
-    status:'Acive'
+    status:'Active'
   },
   {
     name: 'Huraira',
     role: 'Manager',
     access: 'Standard Access',
-    status:'Acive'
+    status:'Active'
   },
   {
     name: 'Hamza',
@@ -507,12 +507,102 @@ export const accessControlTable = [
     name: 'Usman',
     role: 'Auditor',
     access: 'Lab Access',
-    status:'Acive'
+    status:'Active'
   },
   {
     name: 'ALi',
     role: 'Admin',
     access: 'Full Access',
-    status:'Acive'
+    status:'Active'
+  },
+]
+
+export const labServiceTable = [
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-01',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '392',
+    Customer:'Huraira'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-02',
+    TestStatus: 'Negative',
+    Private: 'False',
+    Bill: '192',
+    Customer:'Hamza'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-03',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '222',
+    Customer:'Ali'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-04',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '192',
+    Customer:'Usman'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-05',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '112',
+    Customer:'Huraira'
+  },
+  {
+    OrderID: '1-29-2023-001',
+    TestType: 'Test-06',
+    TestStatus: 'Positive',
+    Private: 'True',
+    Bill: '172',
+    Customer:'Huraira'
+  },
+]
+
+export const maintenanceTable = [
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Malaxar Service",
+    AssignedPerson: 'Huraira',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Malaxar Service",
+    AssignedPerson: 'Hamza',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Waiter Service",
+    AssignedPerson: 'Ali',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Malaxar Service",
+    AssignedPerson: 'Huraira',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Food Service",
+    AssignedPerson: 'Huraira',
+    Status:"Production I/C"
+  },
+  {
+    ServiceID: "1-29-2023-001",
+    ServiceName: "Malaxar Service",
+    AssignedPerson: 'Huraira',
+    Status:"Production I/C"
   },
 ]

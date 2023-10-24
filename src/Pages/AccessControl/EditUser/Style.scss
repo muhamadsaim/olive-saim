@@ -1,0 +1,73 @@
+.mainEditUser {
+  padding: 20px 25px;
+  .iconDiv {
+    .icon {
+      float: right;
+      cursor: pointer;
+    }
+  }
+  .p1 {
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  form {
+    width: 100%;
+    .inputDiv {
+      width: 100%;
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        color: rgba(0, 0, 0, 0.34);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .nameDiv {
+        width: 42%;
+        input {
+          width: 100%;
+          padding: 10px 10px;
+          border: 1px solid rgba(144, 166, 123, 1);
+          font-size: 14px;
+          font-family: 400;
+          border-radius: 10px;
+        }
+        :focus {
+          outline: none;
+        }
+      }
+      .roleDiv {
+        width: 45%;
+        .css-13cymwt-control {
+          border: 1px solid rgba(144, 166, 123, 1);
+          padding: 3px !important;
+          font-size: 12px !important;
+          border-radius: 10px !important;
+        }
+        .css-b62m3t-container {
+          width: 100% !important;
+        }
+        .css-1u9des2-indicatorSeparator {
+          width: 0 !important;
+        }
+      }
+    }
+    .updateBtn {
+      float: right;
+      margin-top: 10px;
+      button {
+        border-radius: 10px;
+        border: 1px solid #90a67b;
+        background: #90a67b;
+        box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.52);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 10px;
+      }
+    }
+  }
+}

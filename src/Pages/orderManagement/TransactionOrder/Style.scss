@@ -1,0 +1,197 @@
+.insideMainTO{
+    .crossIcon{
+        width:100%;
+        text-align: right;
+        .Icon{
+            cursor: pointer;
+        }
+    }
+       .p2{
+           font-size:25px;
+           font-weight: 700;
+           text-align: center;
+           color: rgb(62, 63, 63);
+           span{
+            color: rgb(194, 194, 194);
+            font-size:15px;
+           }
+       }
+       
+       .inputDiv {
+        display: flex;
+        align-items: center;
+        margin-top:10px;
+        .nameDiv {
+          width: 50%;
+          .textAndError {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .error {
+              color: red;
+              font-size: 12px;
+            }
+            .p4 {
+              color: rgba(0, 0, 0, 0.55);
+              font-size: 14px;
+              font-weight: 400;
+            }
+          }
+          input {
+            width: 75%;
+            padding: 15px 10px;
+            border: 1px solid rgba(144, 166, 123, 1);
+            font-size: 14px;
+            font-family: 400;
+            border-radius: 10px;
+          }
+          :focus {
+            outline: none;
+          }
+        }
+        .nameDivv {
+          width: 50%;
+          .textAndError {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .error {
+              color: red;
+              font-size: 12px;
+            }
+            .p4 {
+              color: rgba(0, 0, 0, 0.55);
+              font-size: 14px;
+              font-weight: 400;
+            }
+          }
+          input {
+            width: 80%;
+            padding: 15px 10px;
+            border: 1px solid rgba(144, 166, 123, 1);
+            font-size: 14px;
+            font-family: 400;
+            border-radius: 10px;
+          }
+          :focus {
+            outline: none;
+          }
+          .cancelBtn{
+            padding:10px 10px;
+            border:1px solid #6d8b50;
+            color: rgb(62, 63, 63);
+            font-size:18px;
+            font-weight:700;
+            border-radius:10px;
+            border: none;
+            float: right;
+            margin-right:50px;
+            margin-top:10px;
+            cursor: pointer;
+
+          }
+          .billBtn{
+            padding:10px 10px;
+            background-color: rgba(203, 217, 173, 1);
+            color: #6d8b50;
+            // color: rgba(144, 166, 123, 1);
+            font-size:18px;
+            font-weight:700;
+            // width:15%;
+            border-radius:10px;
+            border: none;
+            float: right;
+            margin-right:50px;
+            margin-top:10px;
+            cursor: pointer;
+
+          }
+          
+        }
+        .paymentDiv{
+          width:100%;
+          .css-13cymwt-control {
+            border: 1px solid rgba(144, 166, 123, 1);
+            padding: 4px !important;
+            font-size: 17px !important;
+            border-radius: 10px !important;
+          }
+          .css-b62m3t-container {
+            width: 87% !important;
+          }
+          .css-1u9des2-indicatorSeparator {
+            width: 0 !important;
+          }
+        }
+      }
+      .billDiv{
+        background-color: #e6e6e66b;
+        width:50%;
+        // height:100px;
+        border-radius:10px;
+        margin-top:20px;
+        padding:15px;
+        .insideBill{
+            display:flex;
+            align-items: center;
+            justify-content: space-between;
+            margin:5px 0;
+            .p1{
+                font-size:15px;
+                font-weight:bold;
+            }
+            .p2{
+                font-size: 15px;
+                font-weight:600;
+            }
+        }
+        .Divider{
+            border:1px solid rgb(190, 190, 190);
+        }
+        .payment{
+            display:flex;
+            align-items: center;
+            justify-content: space-between;
+            margin:10px 0;
+            .p1{
+                font-size:15px;
+                font-weight:bold;
+            }
+            .p2{
+                font-size: 15px;
+                font-weight:600;
+            }
+        }
+        .Signature{
+            display:flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content:center;
+            margin:10px 0;
+            .p1{
+                font-size:15px;
+                font-weight:bold;
+            }
+            .p2{
+                font-size: 15px;
+                font-weight:600;
+                color: black;
+            }
+        }
+      }
+      .saveBtnTO{
+        display: flex;
+        align-items: center;
+        padding:10px 10px;
+        background-color: rgba(203, 217, 173, 1);
+        color: #6d8b50;
+        font-size:18px;
+        font-weight:700;
+     //    width:15%;
+        border-radius:10px;
+        border: none;
+     //    float: right;
+     margin-top:15px;
+        cursor: pointer;
+    }
+   }

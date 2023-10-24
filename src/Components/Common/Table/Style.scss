@@ -1,10 +1,24 @@
 // Styling for header cells
 .MuiTableCell-head {
-  background-color: rgba(144, 166, 123, 1) !important;
-  text-align: center !important;
-  font-size: 20px !important;
-  font-weight: 400 !important;
-  border:none!important;
+    background-color: rgba(144, 166, 123, 1) !important;
+    text-align: center !important;
+    font-weight: 400 !important;
+    border:none!important;
+    font-size: 20px !important;
+  }
+  
+  // Styling for body cells
+  .MuiTableCell-body {
+    text-align: center !important;
+    font-size: 12px !important;
+    font-weight: 300 !important;
+    color: rgba(0, 0, 0, 0.55) !important;
+    border:none!important;
+    cursor: pointer;
+  }
+  
+.MuiTableHead-root {
+  overflow-y:auto
 }
 
 
@@ -18,14 +32,8 @@
   border-radius:10px!important;
 }
 
-// Styling for body cells
-.MuiTableCell-body {
-  text-align: center !important;
-  font-size: 12px !important;
-  font-weight: 300 !important;
-  color: rgba(0, 0, 0, 0.55) !important;
-  border:none!important;
-  cursor: pointer;
+.css-1ygcj2i-MuiTableCell-root{
+  padding:4px!important;
 }
 
 .mainActions{

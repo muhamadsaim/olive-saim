@@ -5,12 +5,17 @@ import SalaryStatistic from "./SalaryStatistic";
 import EmployeeList from "./EmployeeList";
 import Absenties from "./Absenties";
 import { Link, Outlet } from "react-router-dom";
+import { setActiveButton } from "../../Redux/slice/handleToggle";
+import { useDispatch, useSelector } from "react-redux";
 
 const HumanResource = () => {
-  const [toggleBtn, setToggleBtn] = useState(0);
+  // const [toggleBtn, setToggleBtn] = useState(0);
+const toggleBtn=useSelector((state)=>state.toggle.activeButtonIndex)
+const dispatch=useDispatch()
   const handleButtonClick = (index) => {
-    setToggleBtn(index);
+    dispatch(setActiveButton(index))
   };
+
 
   return (
     <div>

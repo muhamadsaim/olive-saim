@@ -4,6 +4,7 @@ import Arrow from "../../../assets/icons/downArrow.png";
 import AttendanceTable from "./Table";
 import html2pdf from 'html2pdf.js';
 import CalendarCom from "../../../Components/Common/Calendar/Calendar";
+import {AttendanceTableData} from '../../../Components/Common/Table/constant'
 
 const Attendance = () => {
   const[show,setShow]=useState(false)
@@ -44,7 +45,7 @@ const Attendance = () => {
         show && <CalendarCom setShow={setShow} showDate={true} setCurDate={setCurDate} />
       }
       <div className="attendanceTable">
-        <AttendanceTable/>
+        <AttendanceTable data={AttendanceTableData} />
       </div>
     </div>
   );

@@ -3,7 +3,8 @@ import './Style.scss'
 import Logo from '../../../../../assets/icons/logo.png'
 import Eye from '../../../../../assets/icons/eye.png'
 import { useNavigate} from 'react-router-dom'
-import {ErrorMessage, SuccessMessage} from '../../../../../Helper/Message'
+import { ErrorMessage, SuccessMessage } from '../../../../../Helper/Message'
+import apiService from '../../../../../Services/apiService'
 
 const ResetPassword = () => {
     const navigate = useNavigate();
@@ -15,14 +16,10 @@ const ResetPassword = () => {
     const [showPass, setShowPass] = useState(false)
     const [strength, setStrength] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        SuccessMessage(`password changed successfully`)
-         navigate('/congratulations',{replace:true})
-    }
+ 
 
     const validatePhoneNumber = (inputPhoneNumber) => {
-        const phonePattern = /^[0-9]{7,15}$/; // Example pattern for a 10-digit phone number
+        const phonePattern = /^[0-9]{7,15}$/; 
     
         return phonePattern.test(inputPhoneNumber);
       };
@@ -74,6 +71,34 @@ const ResetPassword = () => {
         })
         setStrength(checkPasswordStrength(passValue))
     }
+    const gotoCong = () => {
+        navigate('/congratulations',{replace:true})
+        
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (isPhoneNumberValid && (strength === 'good' || strength === 'strong')) {
+            try {
+                const newPassword = credentials.password
+                const phone = credentials.phone
+                const response = await apiService('POST', '/auth/update-password', {}, { phone: phone, newPassword: newPassword })
+                if (response.success) {
+                    SuccessMessage(response.message);
+                    gotoCong();
+                    setCredentials({
+                        phone: '',
+                        password:''
+                    })
+
+                } else {
+                    ErrorMessage(response.message)
+                }
+            } catch (error) {
+                ErrorMessage(`Api Error ${error}`)
+            }
+        }
+    }
 
   return (
     <div className='mainContainer'>
@@ -92,13 +117,13 @@ const ResetPassword = () => {
                             !isPhoneNumberValid&&<p style={{color:'red',fontSize:'12px',fontWeight:'normal'}}>please enter valid phone</p>
                         }
                         </div>
-                    <input type="text" id='phone' placeholder='Enter your Phone Number' onChange={(e)=>handlePhone(e)} style={{border:isPhoneNumberValid? '1px solid rgba(144, 166, 123, 1)':'1px solid red'}}/>
+                    <input type="text" id='phone' value={credentials.phone} placeholder='Enter your Phone Number' onChange={(e)=>handlePhone(e)} style={{border:isPhoneNumberValid? '1px solid rgba(144, 166, 123, 1)':'1px solid red'}}/>
                     </div>
                     <div className='inputDiv'>
                         <div className='labelAnderror'><label htmlFor="password">New Password</label>
                         <p style={{color:getColor(strength),fontSize:'12px',fontWeight:'normal'}}>{strength}</p></div>
                         <div className='passwordDiv' style={{border:`1px solid ${getColor(strength)}`}}>
-                            <input type={showPass?'text':'password'} id='password' placeholder='Enter your new password' onChange={(e)=>handlePassword(e)} />
+                            <input type={showPass?'text':'password'} value={credentials.password} id='password' placeholder='Enter your new password' onChange={(e)=>handlePassword(e)} />
                             <img src={Eye} alt="passwordShow" onClick={()=>setShowPass(!showPass)}/>
                         </div>
                     </div>

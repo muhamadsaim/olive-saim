@@ -1,34 +1,35 @@
-import React from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import './Style.scss'
-import Machine from '../../../assets/icons/machine.png'
+import React from "react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "./Style.scss";
+import Machine from "../../../assets/icons/machine.png";
+import { sliderData } from './sliderData'
 
-const Slider = () => {
+const Slider = ({selectedStation}) => {
   return (
+    
     <Carousel
-    showArrows={true}
-    showThumbs={false}
-    showStatus={false}
-    infiniteLoop={true}
-    width="600px"
-    // autoPlay={true} // Add autoPlay if needed
-    // interval={3000} // Set the interval for autoPlay
-    // stopOnHover={true} // Stop autoPlay on hover
-    showIndicators={false} // Hide indicators
-          emulateTouch={true} // Enable swipe on touch devices
-          
-    >
-      <div className='sliderDiv'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, nostrum. Porro sed fugiat libero ex, consequatur provident quia soluta placeat molestiae illo quam maxime. Eius.</p>
-        <img src={Machine} alt="machine" />
+  showArrows={true}
+  showThumbs={false}
+  showStatus={false}
+  infiniteLoop={true}
+  width="600px"
+  showIndicators={false}
+      emulateTouch={true}
+  onChange={(index)=>selectedStation(sliderData[index].station)}
+>
+  {sliderData.map((slide, index) => (
+    <div className="sliderDiv" key={index}>
+      <p>{slide.text}</p>
+      <div className="stationDiv">
+        <h3>{slide.station}</h3>
+        <p>{slide.time}</p>
       </div>
-      <div className='sliderDiv'>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, nostrum. Porro sed fugiat libero ex, consequatur provident quia soluta placeat molestiae illo quam maxime. Eius.</p>
-        <img src={Machine} alt="machine" />
-      </div>
-      {/* Add more carousel items here */}
-    </Carousel>
+      <img src={slide.image} alt="machine" />
+    </div>
+  ))}
+</Carousel>
+
   );
 };
 

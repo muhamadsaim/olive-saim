@@ -21,7 +21,7 @@
       cursor: pointer;
     }
   }
-  .customerTable {
+  .customerTableMain {
     display: flex;
     justify-content: space-between;
     padding: 0 25px;
@@ -49,5 +49,9 @@
         outline: none;
       }
     }
+  }
+  .customerTable{
+    position: relative;
+    
   }
 }
