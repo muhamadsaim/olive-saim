@@ -88,6 +88,9 @@ const AddParts = lazy(() =>
   import("../Pages/warehouseManagement/SpareParts/AddParts")
 );
 
+const Setting=lazy(()=>import ("../Pages/Setting/index"))
+const PartsForm=lazy(()=>import ("../Pages/Setting/addparts"))
+
 const AllRoutes = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -171,6 +174,9 @@ const AllRoutes = () => {
             <Route path="new-service" element={<NewService />} />
           </Route>
           <Route path="communication" element={<Communication />} />
+          <Route path="setting" element={<Setting />} >
+          <Route path="add-spare-parts" element={<PartsForm/>}/>
+          </Route>
         </Route>
       </Route>
       <Route path="/signup" element={<SignUp />} />
