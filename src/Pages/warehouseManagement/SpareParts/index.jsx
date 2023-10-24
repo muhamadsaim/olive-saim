@@ -51,6 +51,7 @@ const SparePartsComponent = () => {
               // data={WarehouseOilTableData}
               setShowDelete={setShowDelete}
               address={address}
+              check={false}
             />
           </div>
         </div>

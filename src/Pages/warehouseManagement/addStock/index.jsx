@@ -152,7 +152,6 @@ export default function TransactionForm() {
         }));
         return;
       }
-      console.log('formData',formData)
       const response = await apiService(
         "POST",
         "/stock/add-stock",
@@ -194,72 +193,7 @@ export default function TransactionForm() {
                   className="icon"
                 />
               </div>
-              <div className="toggleDiv1">
-                {/* <div className="nameDiv1">
-          <p className="p5">Transaction id</p>
-          <div className="inputDiv1">
-            <div className="nameDiv1">
-              <input type="text" />
-            </div>
-          </div>
-        </div> */}
-                {/* <div className="nameDiv1">
-          <p className="p5">In/Out</p>
-          <div className="inputDiv1">
-            <div className="nameDiv1">
-              <input type="text" />
-            </div>
-          </div>
-        </div> */}
-              </div>
-              <div className="toggleDiv1">
-                {/* <div className="nameDiv1">
-                  <div className="textAndError">
-                    <p className="p5">Number of Cans</p>
-                    {formDataError.cans && (
-                      <span className="error">{formDataError.cans}</span>
-                    )}
-                  </div>
-                  <div className="inputDiv1">
-                    <div className="nameDiv1">
-                      <input
-                        type="text"
-                        name="cans"
-                        placeholder="4"
-                        value={formData.cans}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div className="nameDiv1">
-                  <div className="textAndError">
-                    <p className="p5">Linked Order ID</p>
-                    {formDataError.orderId && (
-                      <span className="error">{formDataError.orderId}</span>
-                    )}
-                  </div>
-                  <div className="inputDiv1">
-                    <div className="nameDiv1">
-                      <input
-                        type="text"
-                        name="orderId"
-                        placeholder="Order Id"
-                        value={formData.orderId}
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div className="nameDiv1">
-          <p className="p5">Authorize By</p>
-          <div className="inputDiv1">
-            <div className="nameDiv1">
-              <input type="text" />
-            </div>
-          </div>
-        </div> */}
-              </div>
+              
               <div className="toggleDiv1">
               <div className="nameDiv1">
                   <div className="textAndError">

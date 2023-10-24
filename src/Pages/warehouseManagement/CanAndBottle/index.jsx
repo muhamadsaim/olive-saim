@@ -51,6 +51,7 @@ const WareHouse = () => {
               // data={WarehouseOilTableData}
               setShowDelete={setShowDelete}
               address={address}
+              check={true}
             />
           </div>
         </div>

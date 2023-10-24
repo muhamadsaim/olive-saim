@@ -7,6 +7,7 @@ import SelectedStockReducer from '../slice/stockEdit'
 import ShortcutSlice from '../slice/handleshortcuts'
 import ToggleButton from "../slice/handleToggle";
 import AuthSlice from '../slice/authSlice'
+import PartData from '../slice/sparePart'
 
 const persistConfig = {
   key: "root", // This is the key used to store the data in Local Storage
@@ -23,7 +24,8 @@ const store = configureStore({
     selectedStock: SelectedStockReducer,
     shortcuts: ShortcutSlice,
     toggle: ToggleButton,
-    auth:AuthSlice
+    auth: AuthSlice,
+    partData:PartData
   },
 });
 

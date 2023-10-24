@@ -20,31 +20,64 @@ import EditStock from "../../../Pages/warehouseManagement/EditStock";
 import apiService from "../../../Services/apiService";
 import { ErrorMessage } from "../../../Helper/Message";
 import Loading from "../Loading";
+import { setPartData } from "../../../Redux/slice/sparePart";
 
-const WarehouseOilTable = ({ searchVal, data, address }) => {
+const WarehouseOilTable = ({ searchVal, data, address, check }) => {
   const lightTheme = Theme();
   const dispatch = useDispatch();
   const [rows, setRows] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
   const reloadOrderBill = useSelector((state) => state.auth.reloadOrderBill);
+
   const getOrderBill = async () => {
     try {
       setRows([]);
       setFilterData([]);
       setLoading(true);
-      const response = await apiService("GET", "/stock/order-bills", {}, null);
-      if (response.success) {
-        setRows(response.data || []);
-        setFilterData(response.data || []);
-        setLoading(false);
+
+      if (check) {
+        const response = await apiService(
+          "GET",
+          "/stock/order-bills",
+          {},
+          null
+        );
+        if (response.success) {
+          setRows(response.data || []);
+          setFilterData(response.data || []);
+          setLoading(false);
+        }
+      } else {
+        const response = await apiService(
+          "GET",
+          "/spareParts/get/spare-parts",
+          {},
+          null
+        );
+        if (response.success) {
+          if (response.data.length > 0) {
+            const partData = response.data.map((item) => ({
+              partName: item.partName,
+              objectId: item._id,
+            }));
+            dispatch(setPartData(partData));
+          }
+        }
+        const getPart = await apiService('GET', '/spareParts/get/spare-part-amount', {}, {});
+        if (getPart.success) {
+          setRows(getPart.data||[]);
+          setFilterData(getPart.data||[]);
+          setLoading(false);
+        }
       }
     } catch (error) {
       ErrorMessage("Api Error", error);
     }
   };
 
-  useEffect(() => {}, [rows]);
+
+  useEffect(() => {},[rows]);
 
   useEffect(() => {
     getOrderBill();
@@ -53,11 +86,12 @@ const WarehouseOilTable = ({ searchVal, data, address }) => {
   useEffect(() => {
     searchFilter();
   }, [searchVal]);
+  
 
   const reloadData = () => {
     getOrderBill();
   };
-  const notRequired = ["_id"];
+  const notRequired = ["_id", "__v","date"];
   const allTableHeaders = Object.keys(rows[0] || {});
   const tableHeaders = allTableHeaders.filter(
     (field) => !notRequired.includes(field)
@@ -137,7 +171,12 @@ const WarehouseOilTable = ({ searchVal, data, address }) => {
                     {/* {cellValue === "Reason" && row["Reason"] !== "New Inventory"
                     ? `linked order ${row[cellValue]}`
                     : row[cellValue]} */}
-                    {row[cellValue]}
+                    {/* {row[cellValue]} */}
+                    {cellValue === "sparePart" && check === false ? (
+                      <img src={`${row.sparePart}`} alt="Image" height={30}/>
+                    ) : (
+                      row[cellValue]
+                    )}
                   </TableCell>
                 ))}
                 <TableCell
@@ -148,14 +187,16 @@ const WarehouseOilTable = ({ searchVal, data, address }) => {
                   }}
                 >
                   <div className="mainActionsW">
-                    <div onClick={() => handleData(row)}>
-                      <EditStock address={address} />
-                    </div>
+                    {check && (
+                      <div onClick={() => handleData(row)}>
+                        <EditStock address={address} />
+                      </div>
+                    )}
 
                     <DeletePopUp
                       circleIcon={false}
                       id={row["_id"]}
-                      url={"/stock/delete-bill"}
+                      url={check?"/stock/delete-bill":"/spareParts/delete/stock/spare-part"}
                       reloadData={reloadData}
                     />
                   </div>
