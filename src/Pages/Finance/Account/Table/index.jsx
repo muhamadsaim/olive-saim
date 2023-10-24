@@ -8,18 +8,19 @@ import TableRow from "@mui/material/TableRow";
 import "./Style.scss";
 import Theme from "../../../../Theme/Theme";
 import Arrow from "../../../../assets/icons/filldarrow.png";
-import { accountTableData } from "../../../../Components/Common/Table/constant";
 
-const TableCom = ({ searchVal, activeBtn }) => {
+const TableCom = ({ searchVal, activeBtn, data }) => {
   const lightTheme = Theme();
-  const [rows, setRows] = useState(accountTableData);
-    const [filterData, setFilterData] = useState(accountTableData);
-    const [selectedRows, setSelectedRows] = useState([]);
-    const [selectAll, setSelectAll] = useState(false)
+  const [rows, setRows] = useState(data);
+  const [filterData, setFilterData] = useState(data);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
 
   useEffect(() => {
     searchFilter();
   }, [searchVal]);
+
+  const tableHeaders = Object.keys(data[0] || {});
 
   const searchFilter = () => {
     if (!searchVal) {
@@ -30,52 +31,52 @@ const TableCom = ({ searchVal, activeBtn }) => {
       });
       setFilterData(filter);
     }
-    };
-    
-    ;
-  
-    const toggleRow = (row) => {
-      const updatedSelectedRows = selectedRows.includes(row) 
-        ? selectedRows.filter(selectedRow => selectedRow !== row)
-        : [...selectedRows, row];
-        setSelectedRows(updatedSelectedRows);
-        activeBtn(false)
-    };
-  
-    const toggleSelectAll = () => {
-      if (selectAll) {
-        setSelectedRows([]);
-        activeBtn(true)
-      } else {
-        setSelectedRows([...filterData]);
-        activeBtn(false)
-      }
-        setSelectAll(!selectAll);
-    };
+  };
+
+  const toggleRow = (row) => {
+    const updatedSelectedRows = selectedRows.includes(row)
+      ? selectedRows.filter((selectedRow) => selectedRow !== row)
+      : [...selectedRows, row];
+    setSelectedRows(updatedSelectedRows);
+    activeBtn(false);
+  };
+
+  const toggleSelectAll = () => {
+    if (selectAll) {
+      setSelectedRows([]);
+      activeBtn(true);
+    } else {
+      setSelectedRows([...filterData]);
+      activeBtn(false);
+    }
+    setSelectAll(!selectAll);
+  };
   return (
-    <TableContainer>
+    <TableContainer className="accountTable">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell className="borHead">
-              <input type="checkBox" checked={selectAll}
-              onChange={toggleSelectAll}/>
+              <input
+                type="checkBox"
+                checked={selectAll}
+                onChange={toggleSelectAll}
+              />
             </TableCell>
-            <TableCell align="right" className="bor">
-              Name
-            </TableCell>
-            <TableCell align="right" className="bor">
-              Type
-            </TableCell>
-            <TableCell align="right" className="bor">
-              Detail Type
-            </TableCell>
-            <TableCell align="right" className="bor">
-              Amount
-            </TableCell>
-            <TableCell align="right" className="borHead1">
-              Actions
-            </TableCell>
+
+            {tableHeaders.map((header, index) => (
+              <TableCell
+                key={index}
+                style={{
+                  borderTopRightRadius:
+                    index === tableHeaders.length - 1 ? "10px" : "0px",
+                  borderBottomRightRadius:
+                    index === tableHeaders.length - 1 ? "10px" : "0px",
+                }}
+              >
+                {header}
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -83,7 +84,6 @@ const TableCom = ({ searchVal, activeBtn }) => {
             <TableRow
               key={row.index}
               style={{
-                // background: index % 2 === 0 ? 'lightcoral' : 'red', // Alternate row background color
                 borderRadius: "10px", // Border radius for odd rows
               }}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -96,25 +96,34 @@ const TableCom = ({ searchVal, activeBtn }) => {
                   borderBottomLeftRadius: "10px",
                 }}
               >
-                <input type="checkBox"  checked={selectedRows.includes(row)}
-                onChange={() => toggleRow(row)}/>
+                <input
+                  type="checkbox"
+                  checked={selectedRows.includes(row)}
+                  onChange={() => toggleRow(row)}
+                />
               </TableCell>
-              <TableCell align="right" className="bor">
-                {row.name}
-              </TableCell>
-              <TableCell align="right" className="bor">
-                {row.type}
-              </TableCell>
-              <TableCell align="right" className="bor">
-                {row.dType}
-              </TableCell>
-              <TableCell align="right" className="bor">
-                {row.amount}
-              </TableCell>
-              <TableCell  align="right" className="lastCell">
-                <img src={Arrow} alt="arrow" height={6} />
-                {row.action}
-              </TableCell>
+              {Object.values(row).map((cellValue, cellIndex) => (
+                <TableCell
+                  key={cellIndex}
+                  align="right"
+                  // style={{
+                  //   borderTopRightRadius:
+                  //   cellIndex === tableHeaders.length-1? "10px" : "0px",
+                  //   borderBottomRightRadius:
+                  //   cellIndex === tableHeaders.length-1? "10px" : "0px",
+                  // }}
+                  className={cellIndex === 4 ? "lastCell" : "bor"}
+                >
+                  {cellIndex === 4 ? (
+                    <>
+                      <img src={Arrow} alt="arrow" height={6} />
+                      {cellValue}
+                    </>
+                  ) : (
+                    cellValue
+                  )}
+                </TableCell>
+              ))}
             </TableRow>
           ))}
         </TableBody>

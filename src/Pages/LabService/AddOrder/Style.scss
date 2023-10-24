@@ -1,0 +1,84 @@
+.addOrderMain {
+  padding: 20px 25px;
+
+  .iconDiv {
+    text-align: right;
+    .icon {
+      // float: right;
+      cursor: pointer;
+    }
+  }
+
+  .formDiv {
+    .nameDiv {
+      padding: 5px 0;
+      .p5 {
+        color: rgb(0, 0, 0);
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 3px;
+      }
+      .inputDiv {
+        display: flex;
+        align-items: center;
+        .calendarDiv {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 75%;
+          padding: 10px 10px;
+          border: 1px solid rgba(144, 166, 123, 1);
+          font-size: 14px;
+          font-family: 400;
+          border-radius: 10px;
+        }
+        .nameDiv {
+          width: 50%;
+          input {
+            width: 75%;
+            padding: 10px 10px;
+            border: 1px solid rgba(144, 166, 123, 1);
+            font-size: 14px;
+            font-family: 400;
+            border-radius: 10px;
+          }
+          :focus {
+            outline: none;
+          }
+        }
+        .nameDivv {
+          width: 50%;
+          input {
+            width: 80%;
+            padding: 10px 10px;
+            border: 1px solid rgba(144, 166, 123, 1);
+            font-size: 14px;
+            font-family: 400;
+            border-radius: 10px;
+          }
+          :focus {
+            outline: none;
+          }
+        }
+      }
+    }
+
+    .saveBtnLab {
+      padding-right: 50px;
+      button {
+        float: right;
+        border-radius: 10px;
+        border: 1px solid #90a67b;
+        background: #90a67b;
+        box-shadow: 0px 4px 20px 0px rgba(238, 238, 238, 0.52);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        width: 15%;
+        padding: 5px 0;
+        cursor: pointer;
+      }
+    }
+  }
+}

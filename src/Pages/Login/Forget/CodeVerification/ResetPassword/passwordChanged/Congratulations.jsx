@@ -2,8 +2,13 @@ import React from "react";
 import "./Style.scss";
 import Logo from "../../../../../../assets/icons/logo.png";
 import { GiPartyPopper } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
 
 const Congratulations = () => {
+  const navigate = useNavigate()
+  const gotoLogin = () => {
+    navigate('/login',{replace:true})
+  }
   return (
     <div className="mainContainer">
       <div className="congratulation">
@@ -16,7 +21,7 @@ const Congratulations = () => {
 
             <h2>Congralutions!!!</h2>
             <p> You have successfully reset your password!</p>
-            <input type="submit" value="Continue" className="submit" />
+            <input type="submit" value="Continue" className="submit" onClick={gotoLogin}/>
           </div>
         </div>
         <div className="imgDiv">

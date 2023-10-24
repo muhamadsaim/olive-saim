@@ -1,78 +1,55 @@
-import React from 'react'
-import './Style.scss'
-import Emp from '../../../assets/icons/user.png'
-import Leave from '../../../assets/icons/leave.png'
-import RecPay from '../../../assets/icons/recpay.png'
-import Receipt from '../../../assets/icons/receipt.png'
-import Complain from '../../../assets/icons/complain.png'
-import PayBill from '../../../assets/icons/paybill.png'
-import RunPay from '../../../assets/icons/runpay.png'
+import React, { useState } from "react";
+import "./Style.scss";
+import { useNavigate } from "react-router-dom";
+import { setValue } from "../../../Redux/slice/NavbarValues";
+import { useDispatch } from "react-redux";
 
-const  GettingThingDone = () => {
+import { shortcuts } from "./shortcuts";
+
+const GettingThingDone = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [comp, setComp] = useState(0);
+  const address = "/dashboard/getting-things-don";
+
+  const handleNavigation = (path, selectedIndex, actions) => {
+    navigate(path, { replace: true });
+    localStorage.removeItem("selectedItemIndex");
+    localStorage.setItem("selectedItemIndex", selectedIndex);
+    dispatch(setValue(selectedIndex));
+    actions.forEach((action) => dispatch(action));
+  };
   return (
-    <div className='mainContainerGTD'>
-      <span className='p1'>Getting Things Done</span>
-      <div className='shortcuts'>
-        <p className='p2'>shortcuts</p>
-        <div className='mainShortcuts'>
-          <div className='blocks'>
-            <div className='block'>
-              <div className='imgDiv'>
-                <img src={Emp} alt="Emp" />
-              </div>
-              <p className='p3'>Add Customer</p>
-            </div>
-            <div className='block'>
-              <div className='imgDiv'>
-              <img src={Emp} alt="Emp" />
-
-              </div>
-              <p className='p3'>Add Employee</p>
-            </div>
-            <div className='block'>
-              <div className='imgDiv'>
-                <img src={Leave} alt="leave" />
-              </div>
-              <p className='p3'>Leave Requests</p>
-            </div>
-            <div className='block'>
-              <div className='imgDiv'>
-                <img src={RecPay} alt="Receive Payment" />
-              </div>
-              <p className='p3'>Receive payments</p>
-            </div>
-          </div>
-          <div className='blocks' style={{marginTop:'30px'}}>
-            <div className='block'>
-              <div className='imgDiv'>
-              <img src={Receipt} alt="receipt" />
-              </div>
-              <p className='p3'>Add Receipt</p>
-            </div>
-            <div className='block'>
-              <div className='imgDiv'>
-              <img src={Complain} alt="complain" />
-
-              </div>
-              <p className='p3'>Add Complaint</p>
-            </div>
-            <div className='block'>
-              <div className='imgDiv'>
-              <img src={PayBill} alt="Pay Bill" />
-              </div>
-              <p className='p3'>Pay Bill</p>
-            </div>
-            <div className='block'>
-              <div className='imgDiv'>
-                <img src={RunPay} alt="Run payroll" />
-              </div>
-              <p className='p3'>Run Payroll</p>
-            </div>
+    <div className="mainContainerGTD">
+      <span className="pGTD">Getting Things Done</span>
+      <div className="shortcuts">
+        <p className="p2">shortcuts</p>
+        <div className="mainShortcuts">
+          <div className="blocks">
+            {shortcuts &&
+              shortcuts.map((shortcut, index) => (
+                <div
+                  className="block"
+                  key={index}
+                  onClick={() =>
+                    handleNavigation(
+                      shortcut.path,
+                      shortcut.sideBar,
+                      shortcut.actions
+                    )
+                  }
+                >
+                  <div className="imgDiv">
+                    <img src={shortcut.img} alt={shortcut.label} />
+                  </div>
+                  <p className="p3">{shortcut.label}</p>
+                </div>
+              ))}
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default  GettingThingDone
+export default GettingThingDone;

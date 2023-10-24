@@ -1,7 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import Layout from "../Components/Layout/Layout";
 import LeaveForm from "../Pages/HumanResources/Employees/Leave";
+import SignUp from "../Pages/SignUp/signUp";
+import Login from "../Pages/Login/Login";
+import Forget from "../Pages/Login/Forget/Forget";
+import Verification from "../Pages/Login/Forget/CodeVerification/Verification";
+import ResetPassword from "../Pages/Login/Forget/CodeVerification/ResetPassword/ResetPassword";
+import Congratulations from "../Pages/Login/Forget/CodeVerification/ResetPassword/passwordChanged/Congratulations";
+import NotFound from "../Pages/NotFound/index";
+import { IsAuth } from "./IsAuth";
+import {
+  authenticateUser,
+  notAuthenticateUser,
+} from "../Redux/slice/authSlice";
+import { useDispatch } from "react-redux";
 const Dashboard = lazy(() => import("../Pages/Dashboard/dashboard"));
 const GettingThingDone = lazy(() =>
   import("../Pages/Dashboard/GettingThingsDone")
@@ -19,10 +32,10 @@ const CustomerForm = lazy(() =>
 );
 const WareHouse = lazy(() => import("../Pages/warehouseManagement/index"));
 const OilStorage = lazy(() => import("../Pages/OilStorage/index"));
-const CanBottleForm = lazy(() =>
+const CanBottleComponent = lazy(() =>
   import("../Pages/warehouseManagement/CanAndBottle/index")
 );
-const SparePartsForm = lazy(() =>
+const SparePartsComponent = lazy(() =>
   import("../Pages/warehouseManagement/SpareParts/index")
 );
 const HumanResource = lazy(() => import("../Pages/HumanResources/index"));
@@ -52,62 +65,127 @@ const AccountForm = lazy(() =>
 );
 const AccessControl = lazy(() => import("../Pages/AccessControl/index"));
 const AddUser = lazy(() => import("../Pages/AccessControl/AddUser/index"));
+const EditUser = lazy(() => import("../Pages/AccessControl/EditUser/index"));
+const LabService = lazy(() => import("../Pages/LabService/index"));
+const AddOrder = lazy(() => import("../Pages/LabService/AddOrder"));
+const SystemMaintenance = lazy(() =>
+  import("../Pages/SystemMaintenance/index")
+);
+const NewService = lazy(() =>
+  import("../Pages/SystemMaintenance/AddService/index")
+);
+const Communication = lazy(() => import("../Pages/communication/index"));
+const AddStock = lazy(() =>
+  import("../Pages/warehouseManagement/addStock/index")
+);
+const EditStock = lazy(() =>
+  import("../Pages/warehouseManagement/EditStock/index")
+);
+const Adjustment = lazy(() =>
+  import("../Pages/warehouseManagement/Adjustment/index")
+);
+const AddParts = lazy(() =>
+  import("../Pages/warehouseManagement/SpareParts/AddParts")
+);
+
+const Setting=lazy(()=>import ("../Pages/Setting/index"))
+const PartsForm=lazy(()=>import ("../Pages/Setting/addparts"))
 
 const AllRoutes = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const Token = localStorage.getItem("authToken");
+    if (Token) {
+      dispatch(authenticateUser());
+    } else {
+      dispatch(notAuthenticateUser());
+    }
+  }, []);
   return (
     <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route
-          path="/dashboard/getting-things-don"
-          element={<GettingThingDone />}
-        />
-        <Route path="/order-management" element={<OrderManagement />}>
-          <Route path="new-order" element={<Form />} />
-        </Route>
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/customer-management" element={<CustomerManagement />}>
-          <Route path="create-customer" element={<CustomerForm />} />
-        </Route>
-        <Route path="/warehouse-management" element={<WareHouse />}>
-          <Route path="can-bottle" element={<CanBottleForm />} />
-          <Route path="spare-parts" element={<SparePartsForm />} />
-        </Route>
-        <Route path="/oil-storage" element={<OilStorage />} />
-        <Route path="/human-resources" element={<HumanResource />}>
-          <Route index element={<Overview />} />
-          <Route path="overview" element={<Overview />} />
-          <Route path="employees" element={<Employees />}>
+      <Route element={<IsAuth />}>
+        <Route element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard/getting-things-don"
+            element={<GettingThingDone />}
+          >
+            <Route path="add-customer" element={<CustomerForm />} />
             <Route path="add-employee" element={<AddEmployee />} />
             <Route path="leave-request" element={<LeaveForm />} />
-            <Route path="profile" element={<Profile />} />
-          </Route>
-          <Route path="attendance" element={<Attendance />} />
-          <Route path="payroll" element={<Payroll />}>
-            <Route path="pay-detail" element={<PayDetail />}>
-              <Route path="final-bill" element={<FinalBill />} />
-            </Route>
-          </Route>
-        </Route>
-        <Route path="/finance" element={<Finance />}>
-          <Route index element={<FinanceOverview />} />
-          <Route path="overview" element={<FinanceOverview />} />
-          <Route path="chart-accounts" element={<Account />}>
+            <Route path="add-test" element={<AddOrder />} />
             <Route path="new-entry" element={<AccountForm />} />
           </Route>
-          <Route path="ledger" element={<Ledger />} />
-        </Route>
-        <Route path="/access-control" element={<AccessControl />}>
-          <Route path="new-user" element={<AddUser />} />
+          <Route path="/order-management" element={<OrderManagement />}>
+            <Route path="new-order" element={<Form />} />
+          </Route>
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/customer-management" element={<CustomerManagement />}>
+            <Route path="create-customer" element={<CustomerForm />} />
+          </Route>
+          <Route path="/warehouse-management" element={<WareHouse />}>
+            {/* <Route index element={<WareHouse />} /> */}
+            <Route index element={<CanBottleComponent />} />
+            <Route path="can-and-bottles" element={<CanBottleComponent />} >
+            <Route path="adjust-stock" element={<Adjustment />} />
+            <Route path="add-stock" element={<AddStock />} />
+            <Route path="edit-stock" element={<EditStock />} />
+            </Route>
+            <Route path="spare-parts" element={<SparePartsComponent />} >
+            <Route path="add-parts" element={<AddParts />} />
+
+            </Route>
+          </Route>
+          <Route path="/oil-storage" element={<OilStorage />}>
+            <Route path="edit-stock" element={<EditStock />} />
+          </Route>
+          <Route path="/human-resources" element={<HumanResource />}>
+            <Route index element={<Overview />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="employees" element={<Employees />}>
+              <Route path="add-employee" element={<AddEmployee />} />
+              <Route path="leave-request" element={<LeaveForm />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
+            <Route path="attendance" element={<Attendance />} />
+            <Route path="payroll" element={<Payroll />}>
+              <Route path="pay-detail" element={<PayDetail />}>
+                <Route path="final-bill" element={<FinalBill />} />
+              </Route>
+            </Route>
+          </Route>
+          <Route path="/finance" element={<Finance />}>
+            <Route index element={<FinanceOverview />} />
+            <Route path="overview" element={<FinanceOverview />} />
+            <Route path="chart-accounts" element={<Account />}>
+              <Route path="new-entry" element={<AccountForm />} />
+            </Route>
+            <Route path="ledger" element={<Ledger />} />
+          </Route>
+          <Route path="/access-control" element={<AccessControl />}>
+            <Route path="new-user" element={<AddUser />} />
+            <Route path="edit-user" element={<EditUser />} />
+          </Route>
+          <Route path="/lab-service" element={<LabService />}>
+            <Route path="new-order" element={<AddOrder />} />
+          </Route>
+          <Route path="/system-maintenance" element={<SystemMaintenance />}>
+            <Route path="new-service" element={<NewService />} />
+          </Route>
+          <Route path="communication" element={<Communication />} />
+          <Route path="setting" element={<Setting />} >
+          <Route path="add-spare-parts" element={<PartsForm/>}/>
+          </Route>
         </Route>
       </Route>
-      {/* <Route path='/signup' element={<SignUp />} />
-    <Route path='/login' element={<Login />} />
-    <Route path='/forget' element={<Forget/>}/>
-    <Route path='/code-verification' element={<Verification/>}/>
-    <Route path='/reset-password' element={<ResetPassword/>}/>
-  <Route path='/congratulations' element={<Congratulations/>}/> */}
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/forget" element={<Forget />} />
+      <Route path="/code-verification" element={<Verification />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/congratulations" element={<Congratulations />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

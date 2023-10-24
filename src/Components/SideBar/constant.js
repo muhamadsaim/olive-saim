@@ -60,6 +60,11 @@ export const option = [
       icon: "/sideBar/systemMaintenance.png",
     },
     {
+      path: "/communication",
+      name: "Message and Communicate",
+      icon: "/sideBar/message.png",
+    },
+    {
       path: "/setting",
       name: "Setting",
       icon: "/sideBar/settingDark.png",

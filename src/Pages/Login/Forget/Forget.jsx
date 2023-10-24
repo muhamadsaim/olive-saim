@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import "./Style.scss";
 import Logo from "../../../assets/icons/logo.png";
-import { SuccessMessage } from '../../../Helper/Message'
-import {useNavigate} from 'react-router-dom'
+import { SuccessMessage, ErrorMessage } from "../../../Helper/Message";
+import { useNavigate } from "react-router-dom";
+import apiService from "../../../Services/apiService";
+import { setPhoneNumber } from "../../../Redux/slice/authSlice";
+import { useDispatch } from "react-redux";
 
 const Forget = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [credentials, setCredentials] = useState({
     phone: "",
   });
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(true);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    SuccessMessage(`verification code is sent on ${credentials.phone}`);
-    navigate('/code-verification',{replace:true})
+
+  const gotoVerification = () => {
+    navigate("/code-verification", { replace: true });
   };
+
   const validatePhoneNumber = (inputPhoneNumber) => {
-    const phonePattern = /^[0-9]{7,15}$/; // Example pattern for a 10-digit phone number
+    const phonePattern = /^[0-9]{7,15}$/;
 
     return phonePattern.test(inputPhoneNumber);
   };
@@ -27,6 +31,38 @@ const Forget = () => {
       phone: phoneValue,
     });
     setIsPhoneNumberValid(validatePhoneNumber(phoneValue));
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const phoneValue = credentials.phone;
+
+    if (!isPhoneNumberValid) {
+      ErrorMessage("Please enter a valid phone number.");
+      return;
+    }
+
+    try {
+      const response = await apiService(
+        "POST",
+        "/auth/forget-password",
+        {},
+        { phone: phoneValue }
+      );
+
+      if (response.success) {
+        dispatch(setPhoneNumber(phoneValue))
+        gotoVerification();
+        SuccessMessage(response.message);
+        setCredentials({
+          phone: "",
+        });
+      } else {
+        ErrorMessage(response.message);
+      }
+    } catch (error) {
+      ErrorMessage(`API Error: ${error.message}`);
+    }
   };
   return (
     <div className="mainContainer">
@@ -57,6 +93,7 @@ const Forget = () => {
                 <input
                   type="text"
                   id="phone"
+                  value={credentials.phone}
                   placeholder="Enter your Phone Number"
                   onChange={(e) => handlePhone(e)}
                   style={{

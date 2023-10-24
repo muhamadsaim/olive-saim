@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import "./Style.scss";
 import { Helmet } from "react-helmet-async";
 import Theme from "../../Theme/Theme";
@@ -14,7 +14,22 @@ import CalendarCom from "../../Components/Common/Calendar/Calendar";
 const Analytics = () => {
   const lightTheme = Theme();
   const { t } = useTranslation();
-  const[show,setShow]=useState(false)
+  const [show, setShow] = useState(false)
+  const [selectedDate, setSelectedDate] = useState('');
+  useEffect(() => {
+    console.log('selectedDate', selectedDate)
+    
+    console.log('formattedDate', formattingDate(selectedDate))
+  }, [selectedDate])
+  const formattingDate = (selectedDate) => {
+    const date = new Date(selectedDate);
+const formattedDate = date.toLocaleDateString('en-GB', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+});
+    return formattedDate;
+  }
   return (
     <div>
       <Helmet>
@@ -32,7 +47,7 @@ const Analytics = () => {
           </div>
         </div>
         {
-          show && <CalendarCom styleCheck={false} setShow={setShow} />
+          show && <CalendarCom styleCheck={false} setShow={setShow} setCurDate={setSelectedDate}/>
         }
         <Cards />
         <div className="graphAndReport">

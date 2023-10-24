@@ -1,8 +1,10 @@
-.mainCustomerT{
-    padding:15px 25px;
-    .customerT{
-        background-color: white ;
-        border-radius:10px;
-        padding:20px;
-    }
+.mainCustomerT {
+  padding: 15px 25px;
+  .customerT {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    height: 400px;
+    overflow-y: auto;
+  }
 }
